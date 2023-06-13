@@ -1,0 +1,38 @@
+.contenido {
+  width: 80%;
+  padding: 0 10%;
+}
+.contenido h1 {
+  margin: 3% 0;
+  text-align: center;
+}
+.contenido h2 {
+  margin: 1% 0;
+}
+.contenido p {
+  font-size: 22px;
+}
+.contenido ul {
+  width: 95%;
+  padding: 0 2.5%;
+}
+.contenido ul li {
+  font-size: 22px;
+  text-align: justify;
+  margin: 2% 0;
+}
+/*RESPONSIVE*/
+@media screen and (max-width: 360px) {
+  .contenido {
+    width: 95%;
+    padding: 2.5%;
+  }
+  .contenido h1 {
+    font-size: 30px;
+    margin: 5% 0;
+  }
+  .contenido ul {
+    width: 90%;
+    padding: 0 5%;
+  }
+}

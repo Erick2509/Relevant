@@ -1,0 +1,84 @@
+.crearcuenta {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.correo {
+  margin-bottom: 20px;
+}
+
+.correo form {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.correo form p {
+  margin-bottom: 10px;
+}
+
+.correo form input[type="email"],
+.correo form input[type="password"],
+.correo form input[type="text"],
+.correo form input[type="number"],
+.correo form input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+}
+.correo form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.correo form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.correo form input[type="radio"],
+.correo form input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.correo form button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px; /* Espacio superior */
+  margin-bottom: 10px; /* Espacio inferior */
+}
+
+.correo form a {
+  color: #333;
+  text-decoration: none;
+  font-size: 20px;
+}
+@media screen and (max-width: 360px) {
+  .crearcuenta {
+    width: 100%;
+  }
+  .correo {
+    width: 100%;
+  }
+  .datos label {
+    display: block;
+    width: 50%;
+    float: left;
+  }
+  .datos p {
+    overflow: auto;
+  }
+  .datos br {
+    display: none;
+  }
+}

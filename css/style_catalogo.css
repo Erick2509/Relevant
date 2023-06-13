@@ -1,0 +1,136 @@
+/*TITULO*/
+.titulo {
+  width: 98%;
+  padding: 1%;
+}
+.titulo h1 {
+  text-align: center;
+}
+/*barra de busqueda*/
+.barra_busqueda {
+  width: 95%;
+  padding: 2.5%;
+  text-align: center;
+}
+.barra_busqueda input {
+  width: 97%;
+  padding: 1.5%;
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+/*estilo del submenu*/
+.lista_marca {
+  width: 100%;
+}
+.catalogo {
+  width: 95%;
+  padding: 2.5%;
+  overflow: auto;
+}
+
+.lista_marca .marcas {
+  width: 60%;
+  margin: 0 20%;
+  overflow: auto;
+}
+.lista_marca .marcas ul {
+  width: 100%;
+  text-align: center;
+}
+.lista_marca .marcas ul li {
+  list-style: none;
+  float: left;
+  width: 33.3%;
+}
+.lista_marca .marcas li img {
+  width: 120px;
+  height: 80px;
+  border: solid rgb(0, 0, 0) 5px;
+  border-radius: 50px;
+}
+.lista_marca .marcas .select {
+  opacity: 0.5;
+}
+
+/*Estilo de Productos*/
+.catalogo .ropa {
+  width: 17%;
+  padding: 0.5%;
+  margin: 1%;
+  float: left;
+  text-align: center;
+  background-color: #eceff0;
+  border-radius: 20px;
+}
+.catalogo .ropa:hover {
+  transform: scale(1.1);
+}
+.catalogo .ropa .obj img {
+  width: 100%;
+}
+.catalogo .ropa a {
+  text-decoration: none;
+}
+.catalogo .ropa .conttxt {
+  display: block;
+  width: 100%;
+  height: 70px;
+}
+/*Estilo listas*/
+.listas_siguientes {
+  width: 100%;
+}
+.listas_siguientes .contenido {
+  width: 20%;
+  padding: 40%;
+  padding-top: 0;
+  padding-bottom: 5%;
+  overflow: auto;
+}
+.listas_siguientes .contenido ul {
+  width: 100%;
+}
+.listas_siguientes .contenido ul li {
+  float: left;
+  width: 25%;
+  list-style: none;
+  text-align: center;
+}
+.listas_siguientes .contenido ul li a {
+  text-decoration: none;
+}
+.listas_siguientes .contenido .seleccion {
+  font-weight: bolder;
+  text-decoration: underline;
+}
+
+/*RESPONSIVE*/
+@media screen and (max-width: 360px) {
+  /*Estilo submenu*/
+  .lista_marca .marcas {
+    width: 100%;
+    margin: 0;
+  }
+  .lista_marca .marcas li img {
+    width: 60px;
+    height: 40px;
+  }
+
+  /*ESTILO PRODUCTOS*/
+  .catalogo .ropa {
+    width: 40%;
+    padding: 3%;
+    margin: 2%;
+  }
+  .catalogo .ropa .conttxt {
+    height: 70px;
+  }
+  .catalogo .ropa .conttxt h3,
+  h4 {
+    font-size: 15px;
+  }
+  .catalogo .ropa:hover {
+    transform: none;
+  }
+}
