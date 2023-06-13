@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="css/style_nosotros.css" />
 <!--CONTENIDO-->
 <div class="contenido">
+  <h1>RELEVANT - NOSOTROS</h1>
   <div class="text">
     <p>
       Este sitio web se hizo con la finalidad de poder mostrar al publico en

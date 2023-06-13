@@ -16,7 +16,7 @@
         <a href="#" class="select"><img src="imagenes/adidas.png" alt="" /></a>
       </li>
       <li>
-        <a href="catalogo_nike.php"><img src="imagenes/nike.png" alt="" /></a>
+        <a href="catalogo_nike..php"><img src="imagenes/nike.png" alt="" /></a>
       </li>
       <li>
         <a href="catalogo_puma.php"><img src="imagenes/puma.png" alt="" /></a>
