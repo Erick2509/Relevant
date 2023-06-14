@@ -40,9 +40,9 @@
       </div>
       <!--SUBTOTAL-->
       <div class="sub_titulos">
-        <a href="">ACTUALIZAR CARRITO</a>
+        <a href="carrito.php">ACTUALIZAR CARRITO</a>
         <span>|</span>
-        <a href="catalogo.html" class="continuar_compra">Continuar la compra</a>
+        <a href="catalogo.php" class="continuar_compra">Continuar la compra</a>
       </div>
       <hr />
       <div class="subtotal">
