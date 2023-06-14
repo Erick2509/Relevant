@@ -1,5 +1,6 @@
 .c_contacto {
   width: 100%;
+  min-height: 100vh;
 }
 .c_contacto .contenido {
   width: 70%;
@@ -9,14 +10,12 @@
   padding-right: 15%;
 }
 .c_contacto .contenido h3 {
-  font-size: 40px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  font-size: 60px;
+  margin: 15px 0;
 }
 .c_contacto .contenido p {
   font-size: 25px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin: 40px 0;
   text-align: justify;
 }
 .c_contacto .boton {
@@ -37,6 +36,11 @@
   color: white;
   text-decoration: none;
   border-radius: 10px;
+}
+.c_contacto .boton a:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border: solid 4px #000000;
 }
 @media screen and (max-width: 360px) {
   .c_contacto .contenido {

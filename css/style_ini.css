@@ -2,10 +2,12 @@
 .crear_cuenta h1 {
   text-align: center;
   padding: 3% 0;
+  font-size: 50px;
 }
 .crear_cuenta {
   width: 100%;
   text-align: center;
+  min-height: 100vh;
 }
 .crear_cuenta p {
   width: 100%;
@@ -40,9 +42,21 @@
   padding: 1% 0;
 }
 .crear_cuenta .ini_crear .iniciar_sesion a input {
-  width: 20%;
+  width: 40%;
+  font-size: 20px;
   cursor: pointer;
+  background-color: #000000;
+  color: #ffffff;
 }
+.crear_cuenta .ini_crear h3:hover {
+  text-decoration: underline;
+}
+.crear_cuenta .ini_crear .iniciar_sesion a input:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border: solid 2px #000000;
+}
+
 .error {
   width: 100%;
   color: red;

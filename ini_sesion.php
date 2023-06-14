@@ -11,7 +11,7 @@
       <input name="correo" type="email" placeholder="*Correo Electronico" id="correo" />
     </p>
     <p>
-      <input name="contrasena" type="text" placeholder="*Contrasena" id="contraseña" />
+      <input name="contrasena" type="password" placeholder="*Contrasena" id="contraseña" />
     </p>
 
     <div class="ini_crear">
