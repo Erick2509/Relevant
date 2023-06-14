@@ -20,4 +20,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   header("Location: pago.php");
   exit();
 }
-?>

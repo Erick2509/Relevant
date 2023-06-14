@@ -156,16 +156,16 @@
   text-align: end;
   padding: 2.5%;
 }
-.contenido_pago .form .botones .btn_cpago a {
+.contenido_pago .form .botones .btn_cpago input {
   padding-top: 15px;
   padding-bottom: 15px;
   padding-left: 20px;
   padding-right: 20px;
   background-color: #f63b3b;
   border-radius: 5px;
-  text-decoration: none;
   font-weight: bold;
   color: #ffffff;
+  cursor: pointer;
 }
 /* PIE */
 .contenido_pago .form .pie {
