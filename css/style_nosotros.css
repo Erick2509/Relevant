@@ -37,4 +37,7 @@
     width: 95%;
     padding: 2.5%;
   }
+  .contenido h1 {
+    font-size: 30px;
+  }
 }

@@ -51,14 +51,14 @@
             <div class="Pais">
               <select name="Pais">
                 <option>Pais/Region</option>
-                <option>Peru</option>
-                <option>Chile</option>
-                <option>Argentina</option>
-                <option>Venezuela</option>
-                <option>Uruguay</option>
-                <option>Paraguay</option>
-                <option>Colombia</option>
-                <option>Ecuador</option>
+                <option value="Peru">Peru</option>
+                <option value="Chile">Chile</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Venezuela">Venezuela</option>
+                <option value="Uruguay">Uruguay</option>
+                <option value="Paraguay">Paraguay</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Ecuador">Ecuador</option>
               </select>
             </div>
             <div class="N_A">
@@ -89,15 +89,15 @@
             <div class="Pais">
               <select name="Provincia">
                 <option>Region/Departamento</option>
-                <option>Amazonas</option>
-                <option>Ancash</option>
-                <option>Apurimac</option>
-                <option>Arequipa</option>
-                <option>Ayacucho</option>
-                <option>Cajamarca</option>
-                <option>Callao</option>
-                <option>Lima</option>
-                <option>Madre de Dios</option>
+                <option value="Amazonas">Amazonas</option>
+                <option value="Ancash">Ancash</option>
+                <option value="Apurimac">Apurimac</option>
+                <option value="Arequipa">Arequipa</option>
+                <option value="Ayacucho">Ayacucho</option>
+                <option value="Cajamarca">Cajamarca</option>
+                <option value="Callao">Callao</option>
+                <option value="Lima">Lima</option>
+                <option value="Madre de Dios">Madre de Dios</option>
               </select>
             </div>
             <div class="Telefono">

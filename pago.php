@@ -61,7 +61,7 @@
           </div>
           <div class="metodos_pago">
             <div class="cont">
-              <button class="acordion active">Depósito Bancario</button>
+              <button class="acordion active" value="Depósito Bancario">Depósito Bancario</button>
               <div class="panel">
                 <p>
                   Puedes realizar tus pagos realizando un depósito bancario a
@@ -71,7 +71,7 @@
               </div>
             </div>
             <div class="cont">
-              <button class="acordion">Yape/Plin</button>
+              <button class="acordion" value="Yape/Plin">Yape/Plin</button>
               <div class="panel">
                 <p>
                   Puedes realizar tus pagos realizando un depósito bancario a
@@ -81,7 +81,7 @@
               </div>
             </div>
             <div class="cont">
-              <button class="acordion">Paypal</button>
+              <button class="acordion" value="Paypal">Paypal</button>
               <div class="panel">
                 <p>
                   Puedes realizar tus pagos realizando un depósito bancario a

@@ -1,4 +1,5 @@
 <?php
+include './bd/conexion.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Obtener los valores del formulario
   $correo = $_POST["correo"];
@@ -9,4 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $nacimiento = $_POST['nacimiento'];
   $sexo = $_POST['sexo'];
 }
+
+$consulta = 'INSERT INTO usuarios (correo,contraseña,nombre,apellido,numdocu,nacimiento,genero) VALUES ("' . $correo . '","' . $contrasena . '", "' . $nombre . '","' . $apellidos . '","' . $documento . '","' . $nacimiento . '","' . $sexo . '")';
+mysqli_query($conexion, $consulta);
+
 header("Location: index.php");

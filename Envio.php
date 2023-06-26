@@ -58,24 +58,24 @@
           <div class="metodos_envio">
             <form action="form_procesar_envio.php" method="POST">
               <div class="cont">
-                <input type="radio" name="envio" /> Envío regular - 1 a 3 días
-                hábiles <span>S/. 39.90</span>
+                <input type="radio" name="envio" value="59.90" /> Envío regular - 1 a 3 días
+                hábiles <span>S/. 59.90</span>
               </div>
               <div class="cont">
-                <input type="radio" name="envio" /> Recojo en - Tienda 1
-                <span>S/. 19.90</span>
+                <input type="radio" name="envio" value="11.90" /> Recojo en - Tienda 1
+                <span>S/. 11.90</span>
               </div>
               <div class="cont">
-                <input type="radio" name="envio" /> Recojo en - Tienda 2
+                <input type="radio" name="envio" value="9.90" /> Recojo en - Tienda 2
                 <span>S/. 9.90</span>
               </div>
               <div class="cont">
-                <input type="radio" name="envio" /> Recojo en - Tienda 3
-                <span>S/. 49.90</span>
+                <input type="radio" name="envio" value="12.90" /> Recojo en - Tienda 3
+                <span>S/. 12.90</span>
               </div>
               <div class="cont">
-                <input type="radio" name="envio" /> Recojo en - Tienda 4
-                <span>S/. 59.90</span>
+                <input type="radio" name="envio" value="19.90" /> Recojo en - Tienda 4
+                <span>S/. 19.90</span>
               </div>
               <div class="botones">
                 <div class="btnenvios">

@@ -36,9 +36,9 @@
     </p>
     <div class="datos">
       <p>
-        <label> <input type="radio" name="sexo" /> Masculino </label>
+        <label> <input type="radio" name="sexo" value="Masculino" />Masculino </label>
         <br />
-        <label> <input type="radio" name="sexo" /> Femenino </label>
+        <label> <input type="radio" name="sexo" value="Femenino" /> Femenino </label>
       </p>
     </div>
     <p>
