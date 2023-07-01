@@ -55,53 +55,56 @@
         </div>
         <!--Contenido de Pago-->
         <div class="pagogeneral">
-          <div class="titulo">
-            <h3>Pago</h3>
-            <h4>Todas las transacciones son seguras y están encriptadas</h4>
-          </div>
-          <div class="metodos_pago">
-            <div class="cont">
-              <button class="acordion active" value="Depósito Bancario">Depósito Bancario</button>
-              <div class="panel">
-                <p>
-                  Puedes realizar tus pagos realizando un depósito bancario a
-                  nombre de RELEVANT en nuestras cuentas de: BCP: Cuenta
-                  Corriente Soles: 000-0000000-0-00
-                </p>
+          <form action="form_procesar_pago.php" method="POST">
+            <div class="titulo">
+              <h3>Pago</h3>
+              <h4>Todas las transacciones son seguras y están encriptadas</h4>
+            </div>
+            <div class="metodos_pago">
+              <div class="cont">
+                <div class="acordion active"><input type="radio" value="Depósito Bancario" name="metodo_pago">Depósito Bancario</div>
+                <div class="panel">
+                  <p>
+                    Puedes realizar tus pagos realizando un depósito bancario a
+                    nombre de RELEVANT en nuestras cuentas de: BCP: Cuenta
+                    Corriente Soles: 000-0000000-0-00
+                  </p>
+                </div>
+              </div>
+              <div class="cont">
+                <div class="acordion"><input type="radio" name="metodo_pago" value="Yape/Plin">Yape/Plin</div>
+                <div class="panel">
+                  <p>
+                    Puedes realizar tus pagos realizando un depósito bancario a
+                    nombre de RELEVANT en nuestras cuentas de: BCP: Cuenta
+                    Corriente Soles: 000-0000000-0-00
+                  </p>
+                </div>
+              </div>
+              <div class="cont">
+                <div class="acordion"><input type="radio" name="metodo_pago" value="Paypal">Paypal</div>
+                <div class="panel">
+                  <p>
+                    Puedes realizar tus pagos realizando un depósito bancario a
+                    nombre de RELEVANT en nuestras cuentas de: BCP: Cuenta
+                    Corriente Soles: 000-0000000-0-00
+                  </p>
+                </div>
               </div>
             </div>
-            <div class="cont">
-              <button class="acordion" value="Yape/Plin">Yape/Plin</button>
-              <div class="panel">
-                <p>
-                  Puedes realizar tus pagos realizando un depósito bancario a
-                  nombre de RELEVANT en nuestras cuentas de: BCP: Cuenta
-                  Corriente Soles: 000-0000000-0-00
-                </p>
+            <div class="botones">
+              <div class="btnenvios">
+                <a href="Envio.php">&#60; Volver a envíos</a>
+              </div>
+              <div class="btn_cpago">
+                <input type="submit" name="finalizar_pedido">Finalizar el pedido</input>
               </div>
             </div>
-            <div class="cont">
-              <button class="acordion" value="Paypal">Paypal</button>
-              <div class="panel">
-                <p>
-                  Puedes realizar tus pagos realizando un depósito bancario a
-                  nombre de RELEVANT en nuestras cuentas de: BCP: Cuenta
-                  Corriente Soles: 000-0000000-0-00
-                </p>
-              </div>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
       <!--Contenido de botones-->
-      <div class="botones">
-        <div class="btnenvios">
-          <a href="Envio.php">&#60; Volver a envíos</a>
-        </div>
-        <div class="btn_cpago">
-          <a href="comprobante.php">Finalizar el pedido</a>
-        </div>
-      </div>
+
       <div class="pie">
         <hr />
         <div class="submenu">

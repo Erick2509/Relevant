@@ -41,3 +41,43 @@ if (acc.length > 0) {
   var panel = acc[0].nextElementSibling;
   panel.style.maxHeight = panel.scrollHeight + "px";
 }
+
+
+/*ACTIVACION DE UN RADIO POR DEFECTO*/
+document.addEventListener('DOMContentLoaded', function () {
+  var radioButtons = document.querySelectorAll('.metodos_pago input[type="radio"]');
+  var acordions = document.querySelectorAll('.metodos_pago .acordion');
+
+  // Verificar si al menos uno de los radio buttons está seleccionado
+  function validateRadioSelection() {
+    var checked = false;
+    for (var i = 0; i < radioButtons.length; i++) {
+      if (radioButtons[i].checked) {
+        checked = true;
+        break;
+      }
+    }
+    return checked;
+  }
+
+  // Establecer el primer radio button como activo si no hay selecciones previas
+  function setFirstRadioButtonActive() {
+    var isFirstRadioButtonChecked = validateRadioSelection();
+    if (!isFirstRadioButtonChecked) {
+      radioButtons[0].checked = true;
+    }
+  }
+
+  // Escuchar el evento click en los acordions
+  acordions.forEach(function (acordion) {
+    acordion.addEventListener('click', function () {
+      var radioButton = this.querySelector('input[type="radio"]');
+      radioButton.checked = true;
+    });
+  });
+
+  setFirstRadioButtonActive();
+});
+
+
+

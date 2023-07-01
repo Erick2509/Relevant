@@ -152,7 +152,6 @@
   color: #444;
   cursor: pointer;
   padding: 18px;
-  width: 100%;
   border: none;
   text-align: left;
   outline: none;
@@ -165,20 +164,6 @@
 .acordion:hover {
   background-color: #ffffff;
 }
-
-.acordion::after {
-  content: "\25E6";
-  color: #777;
-  font-weight: bold;
-  float: right;
-  margin-left: 5px;
-}
-
-.active::after {
-  content: "\25CF";
-  color: #d54646;
-}
-
 .panel {
   padding: 0 18px;
   background-color: #ccc;
@@ -204,14 +189,16 @@
 }
 .contenido_pago .form .botones .btn_cpago {
   width: 95%;
-  text-align: end;
+  display: flex;
+  justify-content: end;
+  flex-direction: row-reverse;
   padding: 2.5%;
 }
-.contenido_pago .form .botones .btn_cpago a {
+.contenido_pago .form .botones .btn_cpago input[type="submit"] {
+  width: 40%;
+  cursor: pointer;
   padding-top: 15px;
   padding-bottom: 15px;
-  padding-left: 20px;
-  padding-right: 20px;
   background-color: #f63b3b;
   border-radius: 5px;
   text-decoration: none;
