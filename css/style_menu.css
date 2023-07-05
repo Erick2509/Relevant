@@ -58,6 +58,17 @@
   width: 20%;
   float: left;
   height: 100%;
+  overflow: auto;
+}
+.cabecera .menu_logo .btncarrito {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+.cabecera .menu_logo .btn_iniciar {
+  width: 50%;
+  float: left;
+  text-align: center;
 }
 .cabecera .menu_logo img {
   width: 50px;
@@ -72,7 +83,16 @@
 .cabecera .menu ul li:hover a {
   color: #000000;
 }
-/*estilo usuario*/
+/*ESTILO NOMBRE USUARIO*/
+.nombre_usuario {
+  text-align: center;
+  display: inline-block;
+  width: 50%;
+  clear: both;
+  color: #ff0000;
+}
+
+/*estilo usuario
 .btn_iniciar {
   float: left;
   overflow: hidden;
@@ -98,7 +118,7 @@
 }
 .btn_iniciar:hover .contenido_btniniciar {
   display: block;
-}
+}*/
 /*Estilo Pie*/
 .pie {
   width: 95%;

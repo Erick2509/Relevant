@@ -14,4 +14,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $consulta = 'INSERT INTO usuarios (correo,contraseña,nombre,apellido,numdocu,nacimiento,genero) VALUES ("' . $correo . '","' . $contrasena . '", "' . $nombre . '","' . $apellidos . '","' . $documento . '","' . $nacimiento . '","' . $sexo . '")';
 mysqli_query($conexion, $consulta);
 
-header("Location: index.php");
+header("Location: ini_sesion.php");

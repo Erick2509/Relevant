@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <html>
 
 <head>
@@ -22,14 +23,26 @@
         </ul>
       </div>
       <div class="menu_logo">
-        <a href="carrito.php"><img src="imagenes/bolsa.png" alt="" /></a>
         <div class="btn_iniciar">
-          <img src="imagenes/logo_usuario.png" alt="" />
-          <div class="contenido_btniniciar">
-            <a href="ini_sesion.php">Iniciar Sesión</a>
-            <a href="crea_cuenta.php">Regístrate</a>
-          </div>
+          <?php if (isset($_SESSION['nombre']) && isset($_SESSION['apellido'])) : ?>
+            <a href="conf_cuenta.php"><img src="imagenes/logo_usuario.png" alt="" /></a>
+          <?php else : ?>
+            <a href="ini_sesion.php"><img src="imagenes/logo_usuario.png" alt="" /></a>
+          <?php endif; ?>
         </div>
+        <div class="btncarrito">
+          <a href="carrito.php"><img src="imagenes/bolsa.png" alt="" /></a>
+        </div>
+
+        <span class="nombre_usuario">
+          <?php
+          if (isset($_SESSION['nombre']) && isset($_SESSION['apellido'])) {
+            echo $_SESSION['nombre'];
+          } else {
+            echo "";
+          }
+          ?>
+        </span>
       </div>
     </div>
   </div>

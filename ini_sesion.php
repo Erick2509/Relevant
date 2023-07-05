@@ -7,6 +7,9 @@
 <div class="crear_cuenta" id="crear_cuenta">
   <h1>Ingresar</h1>
   <form class="contenedor" id="loginForm" action="form_procesar_inisesion.php" method="POST">
+    <?php if (isset($_GET['error']) && $_GET['error'] == 'sesion') {
+      echo '<p style="color: red"> El usuario y/o clave son incorrectos</p>';
+    } ?>
     <p>
       <input name="correo" type="email" placeholder="*Correo Electronico" id="correo" />
     </p>

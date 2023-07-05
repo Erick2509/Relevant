@@ -6,7 +6,12 @@
 <div class="contenedor">
   <div class="contenedor2">
     <div class="tg_confi">
-      <h3>Configuración</h3>
+      <div class="titu_conf">
+        <h3>Configuración</h3>
+      </div>
+      <div class="btnCerrarSesion">
+        <a href="controlador_cerrar_sesion.php">Cerrar Sesion</a>
+      </div>
     </div>
     <hr />
     <div class="t_confi">

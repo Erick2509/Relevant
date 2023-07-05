@@ -11,10 +11,31 @@
   padding-right: 10%;
   padding-left: 10%;
   padding-bottom: 2.5%;
+  overflow: auto;
 }
-.contenedor .tg_confi h3 {
+.contenedor .tg_confi .titu_conf {
+  width: 50%;
+  float: left;
+}
+.contenedor .tg_confi .btnCerrarSesion {
+  width: 50%;
+  float: right;
+  text-align: end;
+  height: 50px;
+}
+.contenedor .tg_confi .btnCerrarSesion a {
+  line-height: 50px;
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.contenedor .tg_confi .titu_conf h3 {
   font-size: 40px;
 }
+
 .contenedor .t_confi {
   width: 40%;
   float: left;

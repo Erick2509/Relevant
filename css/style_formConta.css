@@ -1,5 +1,6 @@
 .c_contacto {
   width: 100%;
+  min-height: 80vh;
 }
 .c_contacto .contenido {
   width: 80%;
