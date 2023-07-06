@@ -1,3 +1,18 @@
+<?php
+session_start();
+function usuarioLogeado()
+{
+  // Verifica si la variable de sesión existe y tiene un valor válido
+  if (isset($_SESSION['nombre']) && !empty($_SESSION['nombre'])) {
+    // El usuario está logeado
+    return true;
+  } else {
+    // El usuario no está logeado
+    return false;
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -37,7 +52,7 @@
               </h6>
             </div>
             <div class="Correo">
-              <input name="correo" type="email" placeholder="Correo electronico" id="correo" />
+              <input name="correo" type="email" placeholder="Correo electronico" id="correo" value="<?php echo (usuarioLogeado()) ? $_SESSION['correo'] : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
             </div>
             <div class="Enviar">
               <input type="checkbox" />Enviarme novedades y ofertas por correo
@@ -63,14 +78,14 @@
             </div>
             <div class="N_A">
               <div class="Nombres">
-                <input type="text" name="nombres" placeholder="Nombre" id="nombres" />
+                <input type="text" name="nombres" placeholder="Nombre" id="nombres" value="<?php echo (usuarioLogeado()) ? $_SESSION['nombre'] : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
               </div>
               <div class="Apellidos">
-                <input type="text" name="apellidos" placeholder="Apellidos" id="apellido" />
+                <input type="text" name="apellidos" placeholder="Apellidos" id="apellido" value="<?php echo (usuarioLogeado()) ? $_SESSION['apellido'] : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
               </div>
             </div>
             <div class="Identidad">
-              <input type="number" name="identidad" placeholder="DNI,CE,RUC" inputmode="numeric" id="dni" />
+              <input type="number" name="identidad" placeholder="DNI,CE,RUC" inputmode="numeric" id="dni" value="<?php echo (usuarioLogeado()) ? $_SESSION['numdocu'] : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
             </div>
             <div class="Direccion">
               <input type="text" name="direccion" placeholder="Direccion" id="direccion" />

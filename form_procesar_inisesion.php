@@ -20,6 +20,8 @@ while ($usuario_fila = mysqli_fetch_array($resultado_usuario)) {
   $_SESSION['id'] = $usuario_fila['id_usuario'];
   $_SESSION['nombre'] = $usuario_fila['nombre'];
   $_SESSION['apellido'] = $usuario_fila['apellido'];
+  $_SESSION['correo'] = $usuario_fila['correo'];
+  $_SESSION['numdocu'] = $usuario_fila['numdocu'];
 }
 
 if ($existe_usuario == 0) {

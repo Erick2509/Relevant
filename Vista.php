@@ -1,3 +1,16 @@
+<?php
+include 'bd/conexion.php';
+$consulta_producto = "SELECT * FROM productos WHERE id_producto='1'";
+$resultado_producto = mysqli_query($conexion, $consulta_producto);
+
+while ($producto_fila = mysqli_fetch_array($resultado_producto)) {
+  $descripcion = $producto_fila['descripcion'];
+  $precio = $producto_fila['precio'];
+}
+
+?>
+
+
 <?php include 'cabecera.php'; ?>
 
 <title>RelevantCarritodeCompra</title>
@@ -20,7 +33,7 @@
     </div>
     <div class="Derecha">
       <div class="Titulo">
-        <h2>Short deportivo de compresión para hombre</h2>
+        <h2><?php echo $descripcion ?></h2>
       </div>
       <div class="Marca">
         <h4>SANTOR SKU: 1000241861</h4>
@@ -32,7 +45,7 @@
               <h3>Precio online</h3>
             </div>
             <div class="Total1">
-              <h3>S/. 89.90</h3>
+              <h3><?php echo 'S/. ' . $precio ?></h3>
             </div>
           </div>
           <div class="p2">
@@ -49,17 +62,18 @@
         <div class="Cantidades">
           <div class="btncantidad">
             <a href="#" onclick="decrementarCantidad()">-</a>
-            <input id="cantidad" type="text" size="2" value="1" />
+            <input id="cantidad" type="text" size="2" value="1" name="cantidad" />
             <a href="#" onclick="incrementarCantidad()">+</a>
           </div>
         </div>
       </div>
+      <!--
       <div class="Descuento">
         <p id="descuentoTexto">
           Obtén hasta S/20 de dscto. adicional con Agora PAY¡Solo iniciando
           sesion!
         </p>
-      </div>
+      </div>-->
       <div class="Agregar">
         <a href="carrito.php">Agregar al carrito</a>
       </div>
