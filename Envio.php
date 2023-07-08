@@ -1,3 +1,20 @@
+<?php
+session_start();
+include './bd/conexion.php';
+$consultainfousuario = "SELECT * FROM usuario_informacion WHERE id_usuario=" . $_SESSION['id'];
+$resultadoconsulta = mysqli_query($conexion, $consultainfousuario);
+$existinfo = false;
+while ($fila = mysqli_fetch_array($resultadoconsulta)) {
+  $existinfo = true;
+  $pais = $fila['pais'];
+  $direccion = $fila['direccion'];
+  $referencia = $fila['referencia'];
+  $codigo_postal = $fila['codigo_postal'];
+  $ciudad = $fila['ciudad'];
+  $region = $fila['region'];
+  $telefono = $fila['telefono'];
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -36,7 +53,7 @@
           <!--Informacion de contacto -->
           <div class="informacion">
             <div class="texto">Contacto</div>
-            <div class="correo">correo@gmail</div>
+            <div class="correo"><?php echo $_SESSION['correo'] ?></div>
             <div class="d_cambiar">
               <a href="Informacion.php">Cambiar</a>
             </div>
@@ -44,7 +61,7 @@
           <!--Informacion de Enviar a-->
           <div class="informacion">
             <div class="texto">Enviar a</div>
-            <div class="correo">jiron junin 345, lima02002,Lima,Perú</div>
+            <div class="correo"><?php echo $direccion . "," . $ciudad . "," . $codigo_postal . "," . $region . "," . $pais ?></div>
             <div class="d_cambiar">
               <a href="Informacion.php">Cambiar</a>
             </div>
@@ -111,18 +128,34 @@
   </div>
   </div>
   <div class="product">
-    <div class="tproductos">
-      <div class="contimg">
-        <img src="imagenes/short.jpg" alt="" />
+    <?php
+    include './bd/conexion.php';
+    $consulta_carrito = "SELECT * FROM carrito where id_usuario='" . $_SESSION['id'] . "'";
+    $resultado_carrito = mysqli_query($conexion, $consulta_carrito);
+    $consulta_carritoTotal = "SELECT SUM(total) AS total_suma FROM carrito WHERE id_usuario = '" . $_SESSION['id'] . "'";
+    $resultado_carritoTotal = mysqli_query($conexion, $consulta_carritoTotal);
+    while ($resultado_fila = mysqli_fetch_array($resultado_carritoTotal)) {
+      $Subtotal = $resultado_fila['total_suma'];
+    }
+
+    $i = 0;
+    while ($carrito_fila = mysqli_fetch_array($resultado_carrito)) {
+      $i++;
+    ?>
+      <div class="tproductos">
+
+        <?php $i; ?>
+        <div class="contimg">
+          <img src="<?php echo $carrito_fila['imagen'] ?>" alt="" />
+        </div>
+        <div class="context">
+          <p><?php echo $carrito_fila['descripcion'] ?></p>
+        </div>
+        <div class="contprecio">
+          <p><?php echo "S/. " . $carrito_fila['total'] ?></p>
+        </div>
       </div>
-      <div class="context">
-        <p>Short deportivo de compresion para hombre</p>
-        <p>S/Negro</p>
-      </div>
-      <div class="contprecio">
-        <p>S/ 89.90</p>
-      </div>
-    </div>
+    <?php } ?>
     <div class="montos">
       <hr />
       <div class="cont_monto">
@@ -130,7 +163,7 @@
           <p>Subtotal</p>
         </div>
         <div class="precio">
-          <p>S/ 89.90</p>
+          <p><?php echo "S/. " . $Subtotal ?></p>
         </div>
       </div>
       <div class="cont_monto">
@@ -138,7 +171,7 @@
           <p>Envíos</p>
         </div>
         <div class="precio">
-          <p>S/ 39.90</p>
+          <p>En proceso</p>
         </div>
       </div>
       <hr />
@@ -147,7 +180,7 @@
           <p>Total</p>
         </div>
         <div class="precio">
-          <p>S/ 129.80</p>
+          <p><?php echo "S/. " . $Subtotal ?></p>
         </div>
       </div>
     </div>

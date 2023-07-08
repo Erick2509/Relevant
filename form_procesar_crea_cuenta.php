@@ -11,7 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $sexo = $_POST['sexo'];
 }
 
-$consulta = 'INSERT INTO usuarios (correo,contraseña,nombre,apellido,numdocu,nacimiento,genero) VALUES ("' . $correo . '","' . $contrasena . '", "' . $nombre . '","' . $apellidos . '","' . $documento . '","' . $nacimiento . '","' . $sexo . '")';
+$consulta = 'INSERT INTO usuarios (correo,contraseña,nombre,apellido,numdocu,nacimiento,genero) 
+VALUES ("' . $correo . '","' . $contrasena . '", "' . $nombre . '","' . $apellidos . '","' . $documento . '","' . $nacimiento . '","' . $sexo . '")';
 mysqli_query($conexion, $consulta);
 
 header("Location: ini_sesion.php");

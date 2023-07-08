@@ -78,6 +78,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   setFirstRadioButtonActive();
 });
-
+//contenido de los tipos de pago
+document.addEventListener('DOMContentLoaded', function () {
+  var panel = document.querySelector('.panel');
+  var textoPagoInput = panel.querySelector('input[name="texto_pago"]');
+  var textoPago = panel.querySelector('p').textContent;
+  textoPagoInput.value = textoPago;
+});
 
 

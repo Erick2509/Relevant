@@ -1,3 +1,30 @@
+<?php
+session_start();
+include './bd/conexion.php';
+$consulta = "SELECT * FROM usuario_informacion WHERE id_usuario='" . $_SESSION['id'] . "'";
+$resultado = mysqli_query($conexion, $consulta);
+while ($fila = mysqli_fetch_array($resultado)) {
+  $pais = $fila['pais'];
+  $direccion = $fila['direccion'];
+  $referencia = $fila['referencia'];
+  $codigo_postal = $fila['codigo_postal'];
+  $ciudad = $fila['ciudad'];
+  $region = $fila['region'];
+  $telefono = $fila['telefono'];
+}
+$consultapago = "SELECT * FROM metodo_pago WHERE id_usuario='" . $_SESSION['id'] . "'";
+$resultadopago = mysqli_query($conexion, $consultapago);
+while ($fila_pago = mysqli_fetch_array($resultadopago)) {
+  $metodopago = $fila_pago['metodo_pago'];
+}
+
+$consultainfopago = "SELECT * FROM metodos_pagos WHERE tipo_pago= '" . $metodopago . "'";
+$resultadoinfopago = mysqli_query($conexion, $consultainfopago);
+while ($filainfo = mysqli_fetch_array($resultadoinfopago)) {
+  $info = $filainfo['instrucciones'];
+}
+
+?>
 <html>
 
 <head>
@@ -19,7 +46,7 @@
           <h3>Pedido REL123</h3>
         </div>
         <div class="agradecimiento">
-          <h1>Gracias Usuario!</h1>
+          <h1>Gracias <?php echo $_SESSION['nombre'] . "!" ?></h1>
         </div>
       </div>
       <div class="desc_confirma_pedido">
@@ -28,20 +55,8 @@
             <h3>Tu pedido está confirmado</h3>
           </div>
           <div class="descrip">
-            <p>Para pagar en Yape sigue los siguientes pasos:</p>
-            <ul>
-              <li>Ingresa al app de Yape.</li>
-              <li>Presiona el boton "Yapear" en la pantalla principal</li>
-              <li>Busca en tus contactos el numero: 999999999</li>
-              <li>Ingresa el monto a pagar</li>
-              <li>Presiona "Yapear" y listo</li>
-            </ul>
             <p>
-              Una vez realizado tu pago, envianos el voucher/comprobante de
-              deposito al Whatsapp:999999999 o al correo relevant@gmail.com.
-              Verficaremos que el deposito se haya recibido correctamente para
-              poder preparar tu pedido. El tiempo de entrega comienza a contar
-              desde el dia de pago.
+              <?php echo $info ?>
             </p>
           </div>
         </div>
@@ -52,39 +67,28 @@
           <div class="left">
             <div class="info">
               <h4>Informacion de contacto</h4>
-              <p>correo@gmail.com</p>
+              <p><?php echo $_SESSION['correo'] ?></p>
             </div>
             <div class="info">
               <h4>Dirección de envío</h4>
               <ul>
-                <li>Usuario</li>
-                <li>88888888</li>
-                <li>Jiron junin 345</li>
-                <li>lima02002</li>
-                <li>Lima</li>
-                <li>Perú</li>
+                <li><?php echo $_SESSION['nombre'] ?></li>
+                <li><?php echo $telefono ?></li>
+                <li><?php echo $direccion ?></li>
+                <li><?php echo $codigo_postal ?></li>
+                <li><?php echo $region ?></li>
+                <li><?php echo $pais ?></li>
               </ul>
-            </div>
-            <div class="info">
-              <h4>Método de envío</h4>
-              <p>Envío regular - 1 a 3 dias hábiles</p>
             </div>
           </div>
           <div class="right">
             <div class="info2">
               <h4>Método de pago</h4>
-              <p>Yape</p>
+              <p><?php echo $metodopago ?></p>
             </div>
             <div class="info2">
-              <h4>Dirección de envío</h4>
-              <ul>
-                <li>Usuario</li>
-                <li>88888888</li>
-                <li>Jiron junin 345</li>
-                <li>lima02002</li>
-                <li>Lima</li>
-                <li>Perú</li>
-              </ul>
+              <h4>Método de envío</h4>
+              <p>Envío regular - 1 a 3 dias hábiles</p>
             </div>
           </div>
         </div>
@@ -96,7 +100,7 @@
           </p>
         </div>
         <div class="btnseguir">
-          <a href="catalogo.php">Seguir comprando</a>
+          <a href="form_comprobante.php">Seguir comprando</a>
         </div>
       </div>
       <div class="pie">
@@ -117,18 +121,39 @@
       </div>
     </div>
     <div class="product">
-      <div class="tproductos">
-        <div class="contimg">
-          <img src="imagenes/short.jpg" alt="" />
+      <?php
+      include './bd/conexion.php';
+      $consulta_carrito = "SELECT * FROM carrito where id_usuario='" . $_SESSION['id'] . "'";
+      $resultado_carrito = mysqli_query($conexion, $consulta_carrito);
+      $consulta_carritoTotal = "SELECT SUM(total) AS total_suma FROM carrito WHERE id_usuario = '" . $_SESSION['id'] . "'";
+      $resultado_carritoTotal = mysqli_query($conexion, $consulta_carritoTotal);
+      $consulta_envio = "SELECT * FROM envio_venta WHERE id_usuario='" . $_SESSION['id'] . "'";
+      $resultado_envio = mysqli_query($conexion, $consulta_envio);
+      while ($resultado_fila = mysqli_fetch_array($resultado_carritoTotal)) {
+        $Subtotal = $resultado_fila['total_suma'];
+      }
+      while ($envio_fila = mysqli_fetch_array($resultado_envio)) {
+        $envio = $envio_fila['tipoenvio'];
+      }
+      $totalg = $Subtotal + $envio;
+      $i = 0;
+      while ($carrito_fila = mysqli_fetch_array($resultado_carrito)) {
+        $i++;
+      ?>
+        <div class="tproductos">
+
+          <?php $i; ?>
+          <div class="contimg">
+            <img src="<?php echo $carrito_fila['imagen'] ?>" alt="" />
+          </div>
+          <div class="context">
+            <p><?php echo $carrito_fila['descripcion'] ?></p>
+          </div>
+          <div class="contprecio">
+            <p><?php echo "S/. " . $carrito_fila['total'] ?></p>
+          </div>
         </div>
-        <div class="context">
-          <p>Short deportivo de compresion para hombre</p>
-          <p>S/Negro</p>
-        </div>
-        <div class="contprecio">
-          <p>S/ 89.90</p>
-        </div>
-      </div>
+      <?php } ?>
       <div class="montos">
         <hr />
         <div class="cont_monto">
@@ -136,7 +161,7 @@
             <p>Subtotal</p>
           </div>
           <div class="precio">
-            <p>S/ 89.90</p>
+            <p><?php echo "S/. " . $Subtotal ?></p>
           </div>
         </div>
         <div class="cont_monto">
@@ -144,7 +169,7 @@
             <p>Envíos</p>
           </div>
           <div class="precio">
-            <p>S/ 39.90</p>
+            <p><?php echo "S/. " . $envio ?></p>
           </div>
         </div>
         <hr />
@@ -153,7 +178,7 @@
             <p>Total</p>
           </div>
           <div class="precio">
-            <p>S/ 129.80</p>
+            <p><?php echo "S/. " . $totalg ?></p>
           </div>
         </div>
       </div>

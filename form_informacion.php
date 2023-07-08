@@ -1,5 +1,6 @@
 <?php
-
+// Inicia la sesión
+session_start();
 include '../Relevant/bd/conexion.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Obtener los valores del formulario
@@ -15,12 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$Provincia = $_POST["Provincia"];
 	$telefono = $_POST["telefono"];
 }
-
 function usuarioLogeado()
 {
-	// Inicia la sesión
-	session_start();
-
 	// Verifica si la variable de sesión existe y tiene un valor válido
 	if (isset($_SESSION['nombre']) && !empty($_SESSION['nombre'])) {
 		// El usuario está logeado

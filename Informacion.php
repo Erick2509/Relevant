@@ -11,6 +11,22 @@ function usuarioLogeado()
     return false;
   }
 }
+
+include './bd/conexion.php';
+$consultainfousuario = "SELECT * FROM usuario_informacion WHERE id_usuario=" . $_SESSION['id'];
+$resultadoconsulta = mysqli_query($conexion, $consultainfousuario);
+$existinfo = false;
+while ($fila = mysqli_fetch_array($resultadoconsulta)) {
+  $existinfo = true;
+  $pais = $fila['pais'];
+  $direccion = $fila['direccion'];
+  $referencia = $fila['referencia'];
+  $codigo_postal = $fila['codigo_postal'];
+  $ciudad = $fila['ciudad'];
+  $region = $fila['region'];
+  $telefono = $fila['telefono'];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -45,12 +61,16 @@ function usuarioLogeado()
             <div class="Info">
               <h3>Informacion del contacto</h3>
             </div>
-            <div class="Pregunta">
-              <h6>
-                ¿Ya tienes tu Cuenta?
-                <a href="ini_sesion.php">Iniciar Sesión</a>
-              </h6>
-            </div>
+            <?php if (usuarioLogeado()) : ?>
+
+            <?php else : ?>
+              <div class="Pregunta">
+                <h6>
+                  ¿Ya tienes tu Cuenta?
+                  <a href="ini_sesion.php">Iniciar Sesión</a>
+                </h6>
+              </div>
+            <?php endif; ?>
             <div class="Correo">
               <input name="correo" type="email" placeholder="Correo electronico" id="correo" value="<?php echo (usuarioLogeado()) ? $_SESSION['correo'] : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
             </div>
@@ -64,16 +84,16 @@ function usuarioLogeado()
               <h3>Dirección de domicilio / Nombre de la tienda</h3>
             </div>
             <div class="Pais">
-              <select name="Pais">
+              <select name="Pais" <?php echo (usuarioLogeado()) ? 'disabled' : ''; ?>>
                 <option>Pais/Region</option>
-                <option value="Peru">Peru</option>
-                <option value="Chile">Chile</option>
-                <option value="Argentina">Argentina</option>
-                <option value="Venezuela">Venezuela</option>
-                <option value="Uruguay">Uruguay</option>
-                <option value="Paraguay">Paraguay</option>
-                <option value="Colombia">Colombia</option>
-                <option value="Ecuador">Ecuador</option>
+                <option value="Peru" <?php echo ($existinfo && $pais == 'Peru') ? 'selected' : ''; ?>>Peru</option>
+                <option value="Chile" <?php echo ($existinfo && $pais == 'Chile') ? 'selected' : ''; ?>>Chile</option>
+                <option value="Argentina" <?php echo ($existinfo && $pais == 'Argentina') ? 'selected' : ''; ?>>Argentina</option>
+                <option value="Venezuela" <?php echo ($existinfo && $pais == 'Venezuela') ? 'selected' : ''; ?>>Venezuela</option>
+                <option value="Uruguay" <?php echo ($existinfo && $pais == 'Uruguay') ? 'selected' : ''; ?>>Uruguay</option>
+                <option value="Paraguay" <?php echo ($existinfo && $pais == 'Paraguay') ? 'selected' : ''; ?>>Paraguay</option>
+                <option value="Colombia" <?php echo ($existinfo && $pais == 'Colombia') ? 'selected' : ''; ?>>Colombia</option>
+                <option value="Ecuador" <?php echo ($existinfo && $pais == 'Ecuador') ? 'selected' : ''; ?>>Ecuador</option>
               </select>
             </div>
             <div class="N_A">
@@ -88,35 +108,36 @@ function usuarioLogeado()
               <input type="number" name="identidad" placeholder="DNI,CE,RUC" inputmode="numeric" id="dni" value="<?php echo (usuarioLogeado()) ? $_SESSION['numdocu'] : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
             </div>
             <div class="Direccion">
-              <input type="text" name="direccion" placeholder="Direccion" id="direccion" />
+              <input type="text" name="direccion" placeholder="Direccion" id="direccion" value="<?php echo $existinfo ? $direccion : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
             </div>
             <div class="Referencia">
-              <input type="text" name="referencia" placeholder="Referencia" id="referencia" />
+              <input type="text" name="referencia" placeholder="Referencia" id="referencia" value="<?php echo $existinfo ? $referencia : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
             </div>
             <div class="C_C">
               <div class="Codigo">
-                <input type="number" name="codigo_postal" placeholder="Codigo postal" id="codigoPos" />
+                <input type="number" name="codigo_postal" placeholder="Codigo postal" id="codigoPos" value="<?php echo $existinfo ? $codigo_postal : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
               </div>
               <div class="Ciudad">
-                <input type="text" name="ciudad" placeholder="Ciudad" id="ciudad" />
+                <input type="text" name="ciudad" placeholder="Ciudad" id="ciudad" value="<?php echo $existinfo ? $ciudad : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
               </div>
             </div>
             <div class="Pais">
-              <select name="Provincia">
-                <option>Region/Departamento</option>
-                <option value="Amazonas">Amazonas</option>
-                <option value="Ancash">Ancash</option>
-                <option value="Apurimac">Apurimac</option>
-                <option value="Arequipa">Arequipa</option>
-                <option value="Ayacucho">Ayacucho</option>
-                <option value="Cajamarca">Cajamarca</option>
-                <option value="Callao">Callao</option>
-                <option value="Lima">Lima</option>
-                <option value="Madre de Dios">Madre de Dios</option>
+              <select name="Provincia" <?php echo (usuarioLogeado()) ? 'disabled' : ''; ?>>
+                <option>Region/Departamento </option>
+                <option value="Amazonas" <?php echo ($existinfo && $region == 'Amazonas') ? 'selected' : ''; ?>>Amazonas</option>
+                <option value="Ancash" <?php echo ($existinfo && $region == 'Ancash') ? 'selected' : ''; ?>>Ancash</option>
+                <option value="Apurimac" <?php echo ($existinfo && $region == 'Apurimac') ? 'selected' : ''; ?>>Apurimac</option>
+                <option value="Arequipa" <?php echo ($existinfo && $region == 'Arequipa') ? 'selected' : ''; ?>>Arequipa</option>
+                <option value="Ayacucho" <?php echo ($existinfo && $region == 'Ayacucho') ? 'selected' : ''; ?>>Ayacucho</option>
+                <option value="Cajamarca" <?php echo ($existinfo && $region == 'Cajamarca') ? 'selected' : ''; ?>>Cajamarca</option>
+                <option value="Callao" <?php echo ($existinfo && $region == 'Callao') ? 'selected' : ''; ?>>Callao</option>
+                <option value="Lima" <?php echo ($existinfo && $region == 'Lima') ? 'selected' : ''; ?>>Lima</option>
+                <option value="Madre de Dios" <?php echo ($existinfo && $region == 'Madre de Dios') ? 'selected' : ''; ?>>Madre de Dios</option>
               </select>
             </div>
+
             <div class="Telefono">
-              <input type="number" name="telefono" placeholder="Teléfono" id="telefono" />
+              <input type="number" name="telefono" placeholder="Teléfono" id="telefono" value="<?php echo $existinfo ? $telefono : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
             </div>
             <div class="Enviar">
               <input type="checkbox" />Guardar mi información y consultar
@@ -153,18 +174,34 @@ function usuarioLogeado()
       </div>
     </div>
     <div class="product">
-      <div class="tproductos">
-        <div class="contimg">
-          <img src="imagenes/short.jpg" alt="" />
+      <?php
+      include './bd/conexion.php';
+      $consulta_carrito = "SELECT * FROM carrito where id_usuario='" . $_SESSION['id'] . "'";
+      $resultado_carrito = mysqli_query($conexion, $consulta_carrito);
+      $consulta_carritoTotal = "SELECT SUM(total) AS total_suma FROM carrito WHERE id_usuario = '" . $_SESSION['id'] . "'";
+      $resultado_carritoTotal = mysqli_query($conexion, $consulta_carritoTotal);
+      while ($resultado_fila = mysqli_fetch_array($resultado_carritoTotal)) {
+        $Subtotal = $resultado_fila['total_suma'];
+      }
+
+      $i = 0;
+      while ($carrito_fila = mysqli_fetch_array($resultado_carrito)) {
+        $i++;
+      ?>
+        <div class="tproductos">
+
+          <?php $i; ?>
+          <div class="contimg">
+            <img src="<?php echo $carrito_fila['imagen'] ?>" alt="" />
+          </div>
+          <div class="context">
+            <p><?php echo $carrito_fila['descripcion'] ?></p>
+          </div>
+          <div class="contprecio">
+            <p><?php echo "S/. " . $carrito_fila['total'] ?></p>
+          </div>
         </div>
-        <div class="context">
-          <p>Short deportivo de compresion para hombre</p>
-          <p>S/Negro</p>
-        </div>
-        <div class="contprecio">
-          <p>S/ 89.90</p>
-        </div>
-      </div>
+      <?php } ?>
       <div class="montos">
         <hr />
         <div class="cont_monto">
@@ -172,7 +209,7 @@ function usuarioLogeado()
             <p>Subtotal</p>
           </div>
           <div class="precio">
-            <p>S/ 89.90</p>
+            <p><?php echo "S/. " . $Subtotal ?></p>
           </div>
         </div>
         <div class="cont_monto">
@@ -189,7 +226,7 @@ function usuarioLogeado()
             <p>Total</p>
           </div>
           <div class="precio">
-            <p>S/ 89.90</p>
+            <p><?php echo "S/. " . $Subtotal ?></p>
           </div>
         </div>
       </div>

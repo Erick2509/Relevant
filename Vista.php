@@ -1,12 +1,15 @@
 <?php
 include 'bd/conexion.php';
-$consulta_producto = "SELECT * FROM productos WHERE id_producto='1'";
+$idp = $_GET['id'];
+$consulta_producto = "SELECT * FROM productos WHERE id_producto='$idp'";
 $resultado_producto = mysqli_query($conexion, $consulta_producto);
 
 while ($producto_fila = mysqli_fetch_array($resultado_producto)) {
   $descripcion = $producto_fila['descripcion'];
   $precio = $producto_fila['precio'];
+  $imagen = $producto_fila['imagen'];
 }
+
 
 ?>
 
@@ -19,12 +22,12 @@ while ($producto_fila = mysqli_fetch_array($resultado_producto)) {
 <div class="contenedor">
   <div class="contenedor1">
     <div class="Izquierda">
-      <div class="imagen01"><img src="imagenes/short.jpg" /></div>
+      <div class="imagen01"><img src="<?php echo $imagen ?>" /></div>
       <div class="imagen02"><img src="imagenes/prueba01.webp" /></div>
       <div class="imagen03"><img src="imagenes/prueba02.webp" /></div>
     </div>
     <div class="central">
-      <div class="producto"><img src="imagenes/short.jpg" /></div>
+      <div class="producto"><img src="<?php echo $imagen ?>" /></div>
       <div class="circulos">
         <img src="imagenes/circulo (1).png" />
         <img src="imagenes/circulo.png" />
@@ -58,25 +61,23 @@ while ($producto_fila = mysqli_fetch_array($resultado_producto)) {
           </div>
         </div>
       </div>
-      <div class="C_A">
-        <div class="Cantidades">
-          <div class="btncantidad">
-            <a href="#" onclick="decrementarCantidad()">-</a>
-            <input id="cantidad" type="text" size="2" value="1" name="cantidad" />
-            <a href="#" onclick="incrementarCantidad()">+</a>
+      <form action="form_procesar_vista.php" method="POST">
+        <input type="hidden" name="imagen" value="<?php echo $imagen ?>">
+        <input type="hidden" name="descripcion" value="<?php echo $descripcion ?>">
+        <input type="hidden" name="precio" value="<?php echo $precio ?>">
+        <div class="C_A">
+          <div class="Cantidades">
+            <div class="btncantidad">
+              <a href="#" onclick="decrementarCantidad()">-</a>
+              <input id="cantidad" type="text" size="2" value="1" name="cantidad" />
+              <a href="#" onclick="incrementarCantidad()">+</a>
+            </div>
           </div>
         </div>
-      </div>
-      <!--
-      <div class="Descuento">
-        <p id="descuentoTexto">
-          Obtén hasta S/20 de dscto. adicional con Agora PAY¡Solo iniciando
-          sesion!
-        </p>
-      </div>-->
-      <div class="Agregar">
-        <a href="carrito.php">Agregar al carrito</a>
-      </div>
+        <div class="Agregar">
+          <input type="submit" value="Agregar al carrito"></input>
+        </div>
+      </form>
     </div>
   </div>
 </div>

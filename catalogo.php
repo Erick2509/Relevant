@@ -29,9 +29,9 @@
 <div class="catalogo" id="product-list">
   <div class="ropa">
     <div class="obj">
-      <a href="Vista.php"><img src="imagenes/short.jpg" alt="" /></a>
+      <a href="Vista.php?id=<?php echo $id = 1; ?>"><img src="imagenes/short.jpg" alt="" /></a>
     </div>
-    <a href="Vista.php" class="conttxt">
+    <a href="Vista.php?id=<?php echo $id = 1; ?>" class="conttxt">
       <h3 class="nombre">Short de compresion para hombre S/Negro</h3>
       <div class="precio">
         <h4>S/. 89.90 PEN</h4>

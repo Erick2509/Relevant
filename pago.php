@@ -1,3 +1,40 @@
+<?php
+session_start();
+
+include './bd/conexion.php';
+$consultametodo = "SELECT * FROM metodos_pagos WHERE id_pago='1'";
+$resultado_metodo = mysqli_query($conexion, $consultametodo);
+while ($metodofila = mysqli_fetch_array($resultado_metodo)) {
+  $tipo_pago = $metodofila['tipo_pago'];
+  $descricion = $metodofila['descripcion'];
+}
+$consultametodo2 = "SELECT * FROM metodos_pagos WHERE id_pago='2'";
+$resultado_metodo2 = mysqli_query($conexion, $consultametodo2);
+while ($metodofila2 = mysqli_fetch_array($resultado_metodo2)) {
+  $tipo_pago2 = $metodofila2['tipo_pago'];
+  $descricion2 = $metodofila2['descripcion'];
+}
+$consultametodo3 = "SELECT * FROM metodos_pagos WHERE id_pago='3'";
+$resultado_metodo3 = mysqli_query($conexion, $consultametodo3);
+while ($metodofila3 = mysqli_fetch_array($resultado_metodo3)) {
+  $tipo_pago3 = $metodofila3['tipo_pago'];
+  $descricion3 = $metodofila3['descripcion'];
+}
+
+$consultainfousuario = "SELECT * FROM usuario_informacion WHERE id_usuario=" . $_SESSION['id'];
+$resultadoconsulta = mysqli_query($conexion, $consultainfousuario);
+$existinfo = false;
+while ($fila = mysqli_fetch_array($resultadoconsulta)) {
+  $existinfo = true;
+  $pais = $fila['pais'];
+  $direccion = $fila['direccion'];
+  $referencia = $fila['referencia'];
+  $codigo_postal = $fila['codigo_postal'];
+  $ciudad = $fila['ciudad'];
+  $region = $fila['region'];
+  $telefono = $fila['telefono'];
+}
+?>
 <html>
 
 <head>
@@ -31,7 +68,7 @@
           <!--Informacion de contacto -->
           <div class="informacion">
             <div class="texto">Contacto</div>
-            <div class="correo">correo@gmail</div>
+            <div class="correo"><?php echo $_SESSION['correo'] ?></div>
             <div class="d_cambiar">
               <a href="Informacion.php">Cambiar</a>
             </div>
@@ -39,7 +76,7 @@
           <!--Informacion de Enviar a-->
           <div class="informacion">
             <div class="texto">Enviar a</div>
-            <div class="correo">jiron junin 345, lima02002,Lima,Perú</div>
+            <div class="correo"><?php echo $direccion . "," . $ciudad . "," . $codigo_postal . "," . $region . "," . $pais ?></div>
             <div class="d_cambiar">
               <a href="Informacion.php">Cambiar</a>
             </div>
@@ -62,32 +99,26 @@
             </div>
             <div class="metodos_pago">
               <div class="cont">
-                <div class="acordion active"><input type="radio" value="Depósito Bancario" name="metodo_pago">Depósito Bancario</div>
+                <div class="acordion active"><input type="radio" value="<?php echo $tipo_pago ?>" name="metodo_pago"><?php echo $tipo_pago ?></div>
                 <div class="panel">
                   <p>
-                    Puedes realizar tus pagos realizando un depósito bancario a
-                    nombre de RELEVANT en nuestras cuentas de: BCP: Cuenta
-                    Corriente Soles: 000-0000000-0-00
+                    <?php echo $descricion ?>
                   </p>
                 </div>
               </div>
               <div class="cont">
-                <div class="acordion"><input type="radio" name="metodo_pago" value="Yape/Plin">Yape/Plin</div>
+                <div class="acordion"><input type="radio" name="metodo_pago" value="<?php echo $tipo_pago2 ?>"><?php echo $tipo_pago2 ?></div>
                 <div class="panel">
                   <p>
-                    Puedes realizar tus pagos realizando un depósito bancario a
-                    nombre de RELEVANT en nuestras cuentas de: BCP: Cuenta
-                    Corriente Soles: 000-0000000-0-00
+                    <?php echo $descricion2 ?>
                   </p>
                 </div>
               </div>
               <div class="cont">
-                <div class="acordion"><input type="radio" name="metodo_pago" value="Paypal">Paypal</div>
+                <div class="acordion"><input type="radio" name="metodo_pago" value="<?php echo $tipo_pago3 ?>"><?php echo $tipo_pago3 ?></div>
                 <div class="panel">
                   <p>
-                    Puedes realizar tus pagos realizando un depósito bancario a
-                    nombre de RELEVANT en nuestras cuentas de: BCP: Cuenta
-                    Corriente Soles: 000-0000000-0-00
+                    <?php echo $descricion3 ?>
                   </p>
                 </div>
               </div>
@@ -100,6 +131,7 @@
                 <input type="submit" name="finalizar_pedido">Finalizar el pedido</input>
               </div>
             </div>
+            <input type="hidden" name="texto_pago" value="">
           </form>
         </div>
       </div>
@@ -124,18 +156,39 @@
       </div>
     </div>
     <div class="product">
-      <div class="tproductos">
-        <div class="contimg">
-          <img src="imagenes/short.jpg" alt="" />
+      <?php
+      include './bd/conexion.php';
+      $consulta_carrito = "SELECT * FROM carrito where id_usuario='" . $_SESSION['id'] . "'";
+      $resultado_carrito = mysqli_query($conexion, $consulta_carrito);
+      $consulta_carritoTotal = "SELECT SUM(total) AS total_suma FROM carrito WHERE id_usuario = '" . $_SESSION['id'] . "'";
+      $resultado_carritoTotal = mysqli_query($conexion, $consulta_carritoTotal);
+      $consulta_envio = "SELECT * FROM envio_venta WHERE id_usuario='" . $_SESSION['id'] . "'";
+      $resultado_envio = mysqli_query($conexion, $consulta_envio);
+      while ($resultado_fila = mysqli_fetch_array($resultado_carritoTotal)) {
+        $Subtotal = $resultado_fila['total_suma'];
+      }
+      while ($envio_fila = mysqli_fetch_array($resultado_envio)) {
+        $envio = $envio_fila['tipoenvio'];
+      }
+      $totalg = $Subtotal + $envio;
+      $i = 0;
+      while ($carrito_fila = mysqli_fetch_array($resultado_carrito)) {
+        $i++;
+      ?>
+        <div class="tproductos">
+
+          <?php $i; ?>
+          <div class="contimg">
+            <img src="<?php echo $carrito_fila['imagen'] ?>" alt="" />
+          </div>
+          <div class="context">
+            <p><?php echo $carrito_fila['descripcion'] ?></p>
+          </div>
+          <div class="contprecio">
+            <p><?php echo "S/. " . $carrito_fila['total'] ?></p>
+          </div>
         </div>
-        <div class="context">
-          <p>Short deportivo de compresion para hombre</p>
-          <p>S/Negro</p>
-        </div>
-        <div class="contprecio">
-          <p>S/ 89.90</p>
-        </div>
-      </div>
+      <?php } ?>
       <div class="montos">
         <hr />
         <div class="cont_monto">
@@ -143,7 +196,7 @@
             <p>Subtotal</p>
           </div>
           <div class="precio">
-            <p>S/ 89.90</p>
+            <p><?php echo "S/. " . $Subtotal ?></p>
           </div>
         </div>
         <div class="cont_monto">
@@ -151,7 +204,7 @@
             <p>Envíos</p>
           </div>
           <div class="precio">
-            <p>S/ 39.90</p>
+            <p><?php echo "S/. " . $envio ?></p>
           </div>
         </div>
         <hr />
@@ -160,7 +213,7 @@
             <p>Total</p>
           </div>
           <div class="precio">
-            <p>S/ 129.80</p>
+            <p><?php echo "S/. " . $totalg ?></p>
           </div>
         </div>
       </div>
