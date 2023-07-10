@@ -6,10 +6,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $selectedEnvio = $_POST['envio'];
 }
 
-$consulta = 'INSERT INTO envio_venta (id_usuario,tipoenvio) VALUES ("' . $_SESSION['id'] . '","' . $selectedEnvio . '")';
-mysqli_query($conexion, $consulta);
 
-
+if ($selectedEnvio == 59.90) {
+  $descripcionenvio = 'Envío express - 1 a 3 días hábiles';
+} else if ($selectedEnvio == 30.90) {
+  $descripcionenvio = 'Envío regular - 3 a 5 días hábiles';
+} else if ($selectedEnvio == 11.90) {
+  $descripcionenvio = 'Recojo en - Tienda 1';
+} else if ($selectedEnvio == 10.90) {
+  $descripcionenvio = 'Recojo en - Tienda 2';
+} else {
+  $descripcionenvio = 'Recojo en - Tienda 3';
+}
+$_SESSION['Tenvio'] = $selectedEnvio;
+$_SESSION['Denvio'] = $descripcionenvio;
 
 // Redireccionar al siguiente paso
 header("Location: pago.php");

@@ -4,11 +4,11 @@ session_start();
 include './bd/conexion.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id = $_POST['id'];
     $imagen = $_POST['imagen'];
     $descripcion = $_POST['descripcion'];
     $precio = $_POST['precio'];
     $cantidad = $_POST['cantidad'];
-    $total = $precio * $cantidad;
 }
 function usuarioLogeado()
 {
@@ -22,11 +22,53 @@ function usuarioLogeado()
     }
 }
 if (usuarioLogeado()) {
+    if (!isset($_SESSION['CARRITO'])) {
 
-    $consulta = 'INSERT INTO carrito (descripcion, precio,cantidad,total,imagen,id_usuario) 
-VALUES ("' . $descripcion . '", "' . $precio . '", "' . $cantidad . '","' . $total . '", "' . $imagen . '","' . $_SESSION['id'] . '")';
-    mysqli_query($conexion, $consulta);
+        $producto = array(
+            'id' => $id,
+            'descripcion' => $descripcion,
+            'imagen' => $imagen,
+            'precio' => $precio,
+            'cantidad' => $cantidad,
+        );
+        $_SESSION['CARRITO'][0] = $producto;
+    } else {
+
+        $NumeroProductos = count($_SESSION['CARRITO']);
+        $productoExistente = false;
+        foreach ($_SESSION['CARRITO'] as &$item) {
+            if ($item['id'] == $id) {
+                // El producto ya existe en el carrito, aumentar la cantidad
+                $item['cantidad'] += $cantidad;
+                $productoExistente = true;
+                break;
+            }
+        }
+
+        if (!$productoExistente) {
+            $producto = array(
+                'id' => $id,
+                'descripcion' => $descripcion,
+                'imagen' => $imagen,
+                'precio' => $precio,
+                'cantidad' => $cantidad,
+            );
+            $_SESSION['CARRITO'][$NumeroProductos] = $producto;
+        }
+    }
+
     header("Location: carrito.php");
 } else {
     header('location: ini_sesion.php');
 }
+?>
+
+/*if (usuarioLogeado()) {
+
+$consulta = 'INSERT INTO carrito (descripcion, precio,cantidad,total,imagen,id_usuario)
+VALUES ("' . $descripcion . '", "' . $precio . '", "' . $cantidad . '","' . $total . '", "' . $imagen . '","' . $_SESSION['id'] . '")';
+mysqli_query($conexion, $consulta);
+
+} else {
+header('location: ini_sesion.php');
+}*/

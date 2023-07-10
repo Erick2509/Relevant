@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-07-2023 a las 07:08:34
+-- Tiempo de generación: 10-07-2023 a las 07:09:34
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,22 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `carrito`
---
-
-CREATE TABLE `carrito` (
-  `id_carrito` int(11) NOT NULL,
-  `descripcion` varchar(100) NOT NULL,
-  `precio` decimal(10,2) NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  `total` decimal(10,2) NOT NULL,
-  `imagen` varchar(100) NOT NULL,
-  `id_usuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `comentarios`
 --
 
@@ -56,29 +40,6 @@ CREATE TABLE `comentarios` (
 INSERT INTO `comentarios` (`id_correo`, `correo`, `opinion`) VALUES
 (1, 'castilloerick760@gmail.com', 'Prueba de correo de opinion cargada a la base de datos'),
 (2, 'prueba2@gmail.com', 'prueba2');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `envio_venta`
---
-
-CREATE TABLE `envio_venta` (
-  `id_tipoenvio` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `tipoenvio` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `envio_venta`
---
-
-INSERT INTO `envio_venta` (`id_tipoenvio`, `id_usuario`, `tipoenvio`) VALUES
-(5, 1, 11.90),
-(7, 1, 59.90),
-(8, 1, 59.90),
-(9, 1, 59.90),
-(10, 1, 59.90);
 
 -- --------------------------------------------------------
 
@@ -135,28 +96,6 @@ INSERT INTO `metodos_pagos` (`id_pago`, `tipo_pago`, `descripcion`, `instruccion
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `metodo_pago`
---
-
-CREATE TABLE `metodo_pago` (
-  `id_Metodopago` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `metodo_pago` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `metodo_pago`
---
-
-INSERT INTO `metodo_pago` (`id_Metodopago`, `id_usuario`, `metodo_pago`) VALUES
-(14, 1, 'Paypal'),
-(16, 1, 'Depósito Bancario'),
-(17, 1, 'Paypal'),
-(18, 1, 'Yape/Plin');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `productos`
 --
 
@@ -164,16 +103,41 @@ CREATE TABLE `productos` (
   `id_producto` int(11) NOT NULL,
   `descripcion` varchar(100) NOT NULL,
   `precio` decimal(10,2) NOT NULL,
-  `imagen` varchar(100) NOT NULL
+  `imagen` varchar(100) NOT NULL,
+  `imagen2` varchar(100) NOT NULL,
+  `imagen3` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id_producto`, `descripcion`, `precio`, `imagen`) VALUES
-(1, 'Short deportivo de compresión para hombre', 89.90, 'imagenes/short.jpg'),
-(2, 'Short deportivo de compresión para hombre', 89.90, 'imagenes/short.jpg');
+INSERT INTO `productos` (`id_producto`, `descripcion`, `precio`, `imagen`, `imagen2`, `imagen3`) VALUES
+(1, 'Short deportivo de compresión para hombre', 89.90, 'imagenes/short.jpg', 'imagenes/prueba01.webp', 'imagenes/prueba02.webp'),
+(2, 'Adidas - Buzo Negro para Hombres', 99.90, 'imagenes/img_adidas/buzo1.webp', 'imagenes/img_adidas/buzo1-1.webp', 'imagenes/img_adidas/buzo1-2.webp');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_envio`
+--
+
+CREATE TABLE `tipo_envio` (
+  `id_envio` int(11) NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
+  `precio` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `tipo_envio`
+--
+
+INSERT INTO `tipo_envio` (`id_envio`, `descripcion`, `precio`) VALUES
+(1, 'Envío express - 1 a 3 días hábiles', 59.90),
+(2, 'Envío regular - 3 a 5 días hábiles', 30.90),
+(3, 'Recojo en - Tienda 1\r\n', 11.90),
+(4, 'Recojo en - Tienda 2', 10.90),
+(5, 'Recojo en - Tienda 3', 9.90);
 
 -- --------------------------------------------------------
 
@@ -227,29 +191,43 @@ INSERT INTO `usuario_informacion` (`id_usuarioinfo`, `id_usuario`, `pais`, `dire
 (1, 1, 'Peru', 'LIMAINFO', 'LIMAINFO', 123456, 'LIMAINFO', 'Lima', 978451247),
 (10, 1, '', 'LIMAINFO', 'LIMAINFO', 123456, 'LIMAINFO', '', 978451247);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ventas`
+--
+
+CREATE TABLE `ventas` (
+  `id_venta` int(11) NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
+  `precio` decimal(10,2) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `metodoPago` varchar(100) NOT NULL,
+  `Tenvio` varchar(100) NOT NULL,
+  `Penvio` decimal(10,2) NOT NULL,
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `ventas`
+--
+
+INSERT INTO `ventas` (`id_venta`, `descripcion`, `precio`, `cantidad`, `total`, `metodoPago`, `Tenvio`, `Penvio`, `id_usuario`) VALUES
+(1, 'Short deportivo de compresión para hombre', 89.90, 1, 89.90, 'Depósito Bancario', 'Envío express - 1 a 3 días hábiles', 59.90, 1),
+(2, 'Adidas - Buzo Negro para Hombres', 99.90, 3, 299.70, 'Depósito Bancario', 'Envío express - 1 a 3 días hábiles', 59.90, 1),
+(3, 'Adidas - Buzo Negro para Hombres', 99.90, 6, 599.40, 'Yape/Plin', 'Recojo en - Tienda 3', 9.90, 1),
+(4, 'Short deportivo de compresión para hombre', 89.90, 4, 359.60, 'Yape/Plin', 'Recojo en - Tienda 3', 9.90, 1);
+
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `carrito`
---
-ALTER TABLE `carrito`
-  ADD PRIMARY KEY (`id_carrito`),
-  ADD KEY `usuarios_id_usuario_prenda` (`id_usuario`);
 
 --
 -- Indices de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id_correo`);
-
---
--- Indices de la tabla `envio_venta`
---
-ALTER TABLE `envio_venta`
-  ADD PRIMARY KEY (`id_tipoenvio`),
-  ADD KEY `usuarios_id_usuario_envio_venta` (`id_usuario`);
 
 --
 -- Indices de la tabla `informacion`
@@ -264,17 +242,16 @@ ALTER TABLE `metodos_pagos`
   ADD PRIMARY KEY (`id_pago`);
 
 --
--- Indices de la tabla `metodo_pago`
---
-ALTER TABLE `metodo_pago`
-  ADD PRIMARY KEY (`id_Metodopago`),
-  ADD KEY `usuarios_id_usuario_metodo_pago` (`id_usuario`);
-
---
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id_producto`);
+
+--
+-- Indices de la tabla `tipo_envio`
+--
+ALTER TABLE `tipo_envio`
+  ADD PRIMARY KEY (`id_envio`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -290,26 +267,21 @@ ALTER TABLE `usuario_informacion`
   ADD KEY `usuarios_id_usuario_usuario_informacion` (`id_usuario`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- Indices de la tabla `ventas`
 --
+ALTER TABLE `ventas`
+  ADD PRIMARY KEY (`id_venta`),
+  ADD KEY `usuarios_id_usuario_prenda` (`id_usuario`);
 
 --
--- AUTO_INCREMENT de la tabla `carrito`
+-- AUTO_INCREMENT de las tablas volcadas
 --
-ALTER TABLE `carrito`
-  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
   MODIFY `id_correo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `envio_venta`
---
-ALTER TABLE `envio_venta`
-  MODIFY `id_tipoenvio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `informacion`
@@ -324,16 +296,16 @@ ALTER TABLE `metodos_pagos`
   MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `metodo_pago`
---
-ALTER TABLE `metodo_pago`
-  MODIFY `id_Metodopago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
   MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_envio`
+--
+ALTER TABLE `tipo_envio`
+  MODIFY `id_envio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -348,32 +320,26 @@ ALTER TABLE `usuario_informacion`
   MODIFY `id_usuarioinfo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT de la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `carrito`
---
-ALTER TABLE `carrito`
-  ADD CONSTRAINT `usuarios_id_usuario_prenda` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `envio_venta`
---
-ALTER TABLE `envio_venta`
-  ADD CONSTRAINT `usuarios_id_usuario_envio_venta` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `metodo_pago`
---
-ALTER TABLE `metodo_pago`
-  ADD CONSTRAINT `usuarios_id_usuario_metodo_pago` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `usuario_informacion`
 --
 ALTER TABLE `usuario_informacion`
   ADD CONSTRAINT `usuarios_id_usuario_usuario_informacion` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  ADD CONSTRAINT `usuarios_id_usuario_prenda` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

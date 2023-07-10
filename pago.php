@@ -84,9 +84,7 @@ while ($fila = mysqli_fetch_array($resultadoconsulta)) {
           <!--Informacion de Metodo envio-->
           <div class="informacion">
             <div class="texto">Método</div>
-            <div class="correo">
-              Envío regular - 1 a 3 días hábiles - Gratis
-            </div>
+            <div class="correo"><?php echo $_SESSION['Denvio'] ?> </div>
             <div class="d_cambiar"><a href="Envio.php">Cambiar</a></div>
           </div>
         </div>
@@ -156,67 +154,53 @@ while ($fila = mysqli_fetch_array($resultadoconsulta)) {
       </div>
     </div>
     <div class="product">
-      <?php
-      include './bd/conexion.php';
-      $consulta_carrito = "SELECT * FROM carrito where id_usuario='" . $_SESSION['id'] . "'";
-      $resultado_carrito = mysqli_query($conexion, $consulta_carrito);
-      $consulta_carritoTotal = "SELECT SUM(total) AS total_suma FROM carrito WHERE id_usuario = '" . $_SESSION['id'] . "'";
-      $resultado_carritoTotal = mysqli_query($conexion, $consulta_carritoTotal);
-      $consulta_envio = "SELECT * FROM envio_venta WHERE id_usuario='" . $_SESSION['id'] . "'";
-      $resultado_envio = mysqli_query($conexion, $consulta_envio);
-      while ($resultado_fila = mysqli_fetch_array($resultado_carritoTotal)) {
-        $Subtotal = $resultado_fila['total_suma'];
-      }
-      while ($envio_fila = mysqli_fetch_array($resultado_envio)) {
-        $envio = $envio_fila['tipoenvio'];
-      }
-      $totalg = $Subtotal + $envio;
-      $i = 0;
-      while ($carrito_fila = mysqli_fetch_array($resultado_carrito)) {
-        $i++;
-      ?>
-        <div class="tproductos">
-
-          <?php $i; ?>
-          <div class="contimg">
-            <img src="<?php echo $carrito_fila['imagen'] ?>" alt="" />
+      <?php if (!empty($_SESSION['CARRITO'])) { ?>
+        <?php $totalG = 0; ?>
+        <?php foreach ($_SESSION['CARRITO'] as $indice => $producto) { ?>
+          <div class="tproductos">
+            <div class="contimg">
+              <img src="<?php echo $producto['imagen'] ?>" alt="" />
+            </div>
+            <div class="context">
+              <p><?php echo $producto['descripcion'] ?></p>
+            </div>
+            <div class="contprecio">
+              <p><?php echo "S/. " . number_format($producto['precio'] * $producto['cantidad'], 2) ?></p>
+            </div>
           </div>
-          <div class="context">
-            <p><?php echo $carrito_fila['descripcion'] ?></p>
+          <?php $totalG = $totalG + ($producto['precio'] * $producto['cantidad']) ?>
+        <?php } ?>
+        <div class="montos">
+          <hr />
+          <div class="cont_monto">
+            <div class="text">
+              <p>Subtotal</p>
+            </div>
+            <div class="precio">
+              <p>S/. <?php echo number_format($totalG, 2) ?></p>
+            </div>
           </div>
-          <div class="contprecio">
-            <p><?php echo "S/. " . $carrito_fila['total'] ?></p>
+          <div class="cont_monto">
+            <div class="text">
+              <p>Envíos</p>
+            </div>
+            <div class="precio">
+              <p><?php echo 'S/. ' . $_SESSION['Tenvio'] ?></p>
+            </div>
+          </div>
+          <hr />
+          <div class="cont_monto">
+            <div class="text">
+              <p>Total</p>
+            </div>
+            <div class="precio">
+              <p>S/. <?php echo number_format($totalG + $_SESSION['Tenvio'], 2) ?></p>
+            </div>
           </div>
         </div>
+      <?php } else { ?>
+        <p style="min-height: 40vh;">NO HAY PRODUCTOS EN EL CARRITO</p>
       <?php } ?>
-      <div class="montos">
-        <hr />
-        <div class="cont_monto">
-          <div class="text">
-            <p>Subtotal</p>
-          </div>
-          <div class="precio">
-            <p><?php echo "S/. " . $Subtotal ?></p>
-          </div>
-        </div>
-        <div class="cont_monto">
-          <div class="text">
-            <p>Envíos</p>
-          </div>
-          <div class="precio">
-            <p><?php echo "S/. " . $envio ?></p>
-          </div>
-        </div>
-        <hr />
-        <div class="cont_monto">
-          <div class="text">
-            <p>Total</p>
-          </div>
-          <div class="precio">
-            <p><?php echo "S/. " . $totalg ?></p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
   <script src="js/pago.js"></script>

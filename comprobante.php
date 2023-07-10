@@ -12,13 +12,8 @@ while ($fila = mysqli_fetch_array($resultado)) {
   $region = $fila['region'];
   $telefono = $fila['telefono'];
 }
-$consultapago = "SELECT * FROM metodo_pago WHERE id_usuario='" . $_SESSION['id'] . "'";
-$resultadopago = mysqli_query($conexion, $consultapago);
-while ($fila_pago = mysqli_fetch_array($resultadopago)) {
-  $metodopago = $fila_pago['metodo_pago'];
-}
 
-$consultainfopago = "SELECT * FROM metodos_pagos WHERE tipo_pago= '" . $metodopago . "'";
+$consultainfopago = "SELECT * FROM metodos_pagos WHERE tipo_pago= '" . $_SESSION['Mpago'] . "'";
 $resultadoinfopago = mysqli_query($conexion, $consultainfopago);
 while ($filainfo = mysqli_fetch_array($resultadoinfopago)) {
   $info = $filainfo['instrucciones'];
@@ -84,11 +79,11 @@ while ($filainfo = mysqli_fetch_array($resultadoinfopago)) {
           <div class="right">
             <div class="info2">
               <h4>Método de pago</h4>
-              <p><?php echo $metodopago ?></p>
+              <p><?php echo $_SESSION['Mpago'] ?></p>
             </div>
             <div class="info2">
               <h4>Método de envío</h4>
-              <p>Envío regular - 1 a 3 dias hábiles</p>
+              <p><?php echo $_SESSION['Denvio'] ?></p>
             </div>
           </div>
         </div>
@@ -121,67 +116,53 @@ while ($filainfo = mysqli_fetch_array($resultadoinfopago)) {
       </div>
     </div>
     <div class="product">
-      <?php
-      include './bd/conexion.php';
-      $consulta_carrito = "SELECT * FROM carrito where id_usuario='" . $_SESSION['id'] . "'";
-      $resultado_carrito = mysqli_query($conexion, $consulta_carrito);
-      $consulta_carritoTotal = "SELECT SUM(total) AS total_suma FROM carrito WHERE id_usuario = '" . $_SESSION['id'] . "'";
-      $resultado_carritoTotal = mysqli_query($conexion, $consulta_carritoTotal);
-      $consulta_envio = "SELECT * FROM envio_venta WHERE id_usuario='" . $_SESSION['id'] . "'";
-      $resultado_envio = mysqli_query($conexion, $consulta_envio);
-      while ($resultado_fila = mysqli_fetch_array($resultado_carritoTotal)) {
-        $Subtotal = $resultado_fila['total_suma'];
-      }
-      while ($envio_fila = mysqli_fetch_array($resultado_envio)) {
-        $envio = $envio_fila['tipoenvio'];
-      }
-      $totalg = $Subtotal + $envio;
-      $i = 0;
-      while ($carrito_fila = mysqli_fetch_array($resultado_carrito)) {
-        $i++;
-      ?>
-        <div class="tproductos">
-
-          <?php $i; ?>
-          <div class="contimg">
-            <img src="<?php echo $carrito_fila['imagen'] ?>" alt="" />
+      <?php if (!empty($_SESSION['CARRITO'])) { ?>
+        <?php $totalG = 0; ?>
+        <?php foreach ($_SESSION['CARRITO'] as $indice => $producto) { ?>
+          <div class="tproductos">
+            <div class="contimg">
+              <img src="<?php echo $producto['imagen'] ?>" alt="" />
+            </div>
+            <div class="context">
+              <p><?php echo $producto['descripcion'] ?></p>
+            </div>
+            <div class="contprecio">
+              <p><?php echo "S/. " . number_format($producto['precio'] * $producto['cantidad'], 2) ?></p>
+            </div>
           </div>
-          <div class="context">
-            <p><?php echo $carrito_fila['descripcion'] ?></p>
+          <?php $totalG = $totalG + ($producto['precio'] * $producto['cantidad']) ?>
+        <?php } ?>
+        <div class="montos">
+          <hr />
+          <div class="cont_monto">
+            <div class="text">
+              <p>Subtotal</p>
+            </div>
+            <div class="precio">
+              <p>S/. <?php echo number_format($totalG, 2) ?></p>
+            </div>
           </div>
-          <div class="contprecio">
-            <p><?php echo "S/. " . $carrito_fila['total'] ?></p>
+          <div class="cont_monto">
+            <div class="text">
+              <p>Envíos</p>
+            </div>
+            <div class="precio">
+              <p><?php echo 'S/. ' . $_SESSION['Tenvio'] ?></p>
+            </div>
+          </div>
+          <hr />
+          <div class="cont_monto">
+            <div class="text">
+              <p>Total</p>
+            </div>
+            <div class="precio">
+              <p>S/. <?php echo number_format($totalG + $_SESSION['Tenvio'], 2) ?></p>
+            </div>
           </div>
         </div>
+      <?php } else { ?>
+        <p style="min-height: 40vh;">NO HAY PRODUCTOS EN EL CARRITO</p>
       <?php } ?>
-      <div class="montos">
-        <hr />
-        <div class="cont_monto">
-          <div class="text">
-            <p>Subtotal</p>
-          </div>
-          <div class="precio">
-            <p><?php echo "S/. " . $Subtotal ?></p>
-          </div>
-        </div>
-        <div class="cont_monto">
-          <div class="text">
-            <p>Envíos</p>
-          </div>
-          <div class="precio">
-            <p><?php echo "S/. " . $envio ?></p>
-          </div>
-        </div>
-        <hr />
-        <div class="cont_monto">
-          <div class="text">
-            <p>Total</p>
-          </div>
-          <div class="precio">
-            <p><?php echo "S/. " . $totalg ?></p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </body>

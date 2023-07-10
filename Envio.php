@@ -14,6 +14,37 @@ while ($fila = mysqli_fetch_array($resultadoconsulta)) {
   $region = $fila['region'];
   $telefono = $fila['telefono'];
 }
+
+$consultaenvio = "SELECT * FROM tipo_envio WHERE id_envio=1";
+$resultadoenvio = mysqli_query($conexion, $consultaenvio);
+while ($filaenvio = mysqli_fetch_array($resultadoenvio)) {
+  $descripcionenvio = $filaenvio['descripcion'];
+  $precioenvio = $filaenvio['precio'];
+}
+$consultaenvio2 = "SELECT * FROM tipo_envio WHERE id_envio=2";
+$resultadoenvio2 = mysqli_query($conexion, $consultaenvio2);
+while ($filaenvio2 = mysqli_fetch_array($resultadoenvio2)) {
+  $descripcionenvio2 = $filaenvio2['descripcion'];
+  $precioenvio2 = $filaenvio2['precio'];
+}
+$consultaenvio3 = "SELECT * FROM tipo_envio WHERE id_envio=3";
+$resultadoenvio3 = mysqli_query($conexion, $consultaenvio3);
+while ($filaenvio3 = mysqli_fetch_array($resultadoenvio3)) {
+  $descripcionenvio3 = $filaenvio3['descripcion'];
+  $precioenvio3 = $filaenvio3['precio'];
+}
+$consultaenvio4 = "SELECT * FROM tipo_envio WHERE id_envio=4";
+$resultadoenvio4 = mysqli_query($conexion, $consultaenvio4);
+while ($filaenvio4 = mysqli_fetch_array($resultadoenvio4)) {
+  $descripcionenvio4 = $filaenvio4['descripcion'];
+  $precioenvio4 = $filaenvio4['precio'];
+}
+$consultaenvio5 = "SELECT * FROM tipo_envio WHERE id_envio=5";
+$resultadoenvio5 = mysqli_query($conexion, $consultaenvio5);
+while ($filaenvio5 = mysqli_fetch_array($resultadoenvio5)) {
+  $descripcionenvio5 = $filaenvio5['descripcion'];
+  $precioenvio5 = $filaenvio5['precio'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -75,24 +106,19 @@ while ($fila = mysqli_fetch_array($resultadoconsulta)) {
           <div class="metodos_envio">
             <form action="form_procesar_envio.php" method="POST">
               <div class="cont">
-                <input type="radio" name="envio" value="59.90" /> Envío regular - 1 a 3 días
-                hábiles <span>S/. 59.90</span>
+                <input type="radio" name="envio" value="<?php echo $precioenvio ?>" /><?php echo $descripcionenvio ?> <span>S/. <?php echo $precioenvio ?></span>
               </div>
               <div class="cont">
-                <input type="radio" name="envio" value="11.90" /> Recojo en - Tienda 1
-                <span>S/. 11.90</span>
+                <input type="radio" name="envio" value="<?php echo $precioenvio2 ?>" /><?php echo $descripcionenvio2 ?> <span>S/. <?php echo $precioenvio2 ?></span>
               </div>
               <div class="cont">
-                <input type="radio" name="envio" value="9.90" /> Recojo en - Tienda 2
-                <span>S/. 9.90</span>
+                <input type="radio" name="envio" value="<?php echo $precioenvio3 ?>" /><?php echo $descripcionenvio3 ?> <span>S/. <?php echo $precioenvio3 ?></span>
               </div>
               <div class="cont">
-                <input type="radio" name="envio" value="12.90" /> Recojo en - Tienda 3
-                <span>S/. 12.90</span>
+                <input type="radio" name="envio" value="<?php echo $precioenvio4 ?>" /><?php echo $descripcionenvio4 ?> <span>S/. <?php echo $precioenvio4 ?></span>
               </div>
               <div class="cont">
-                <input type="radio" name="envio" value="19.90" /> Recojo en - Tienda 4
-                <span>S/. 19.90</span>
+                <input type="radio" name="envio" value="<?php echo $precioenvio5 ?>" /><?php echo $descripcionenvio5 ?> <span>S/. <?php echo $precioenvio5 ?></span>
               </div>
               <div class="botones">
                 <div class="btnenvios">
@@ -100,91 +126,83 @@ while ($fila = mysqli_fetch_array($resultadoconsulta)) {
                 </div>
                 <div class="btn_cpago">
                   <input type="submit" value="Continuar con el pago"></input>
+                </div>
             </form>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!--Contenido de botones-->
+
+    <!--Contenido de botones-->
 
 
-  <div class="pie">
-    <hr />
-    <div class="submenu">
-      <ul>
-        <li>
-          <a href="reembolso.php" target="_blank">Política de reembolso</a>
-        </li>
-        <li>
-          <a href="privacidad.php" target="_blank">Política de privacidad</a>
-        </li>
-        <li>
-          <a href="terminos.php" target="_blank">Términos y condiciones</a>
-        </li>
-      </ul>
+    <div class="pie">
+      <hr />
+      <div class="submenu">
+        <ul>
+          <li>
+            <a href="reembolso.php" target="_blank">Política de reembolso</a>
+          </li>
+          <li>
+            <a href="privacidad.php" target="_blank">Política de privacidad</a>
+          </li>
+          <li>
+            <a href="terminos.php" target="_blank">Términos y condiciones</a>
+          </li>
+        </ul>
+      </div>
+      <p>&copy; Relevant 2023 - Todos los derechos reservados</p>
     </div>
-    <p>&copy; Relevant 2023 - Todos los derechos reservados</p>
   </div>
-  </div>
+
   <div class="product">
-    <?php
-    include './bd/conexion.php';
-    $consulta_carrito = "SELECT * FROM carrito where id_usuario='" . $_SESSION['id'] . "'";
-    $resultado_carrito = mysqli_query($conexion, $consulta_carrito);
-    $consulta_carritoTotal = "SELECT SUM(total) AS total_suma FROM carrito WHERE id_usuario = '" . $_SESSION['id'] . "'";
-    $resultado_carritoTotal = mysqli_query($conexion, $consulta_carritoTotal);
-    while ($resultado_fila = mysqli_fetch_array($resultado_carritoTotal)) {
-      $Subtotal = $resultado_fila['total_suma'];
-    }
-
-    $i = 0;
-    while ($carrito_fila = mysqli_fetch_array($resultado_carrito)) {
-      $i++;
-    ?>
-      <div class="tproductos">
-
-        <?php $i; ?>
-        <div class="contimg">
-          <img src="<?php echo $carrito_fila['imagen'] ?>" alt="" />
+    <?php if (!empty($_SESSION['CARRITO'])) { ?>
+      <?php $totalG = 0; ?>
+      <?php foreach ($_SESSION['CARRITO'] as $indice => $producto) { ?>
+        <div class="tproductos">
+          <div class="contimg">
+            <img src="<?php echo $producto['imagen'] ?>" alt="" />
+          </div>
+          <div class="context">
+            <p><?php echo $producto['descripcion'] ?></p>
+          </div>
+          <div class="contprecio">
+            <p><?php echo "S/. " . number_format($producto['precio'] * $producto['cantidad'], 2) ?></p>
+          </div>
         </div>
-        <div class="context">
-          <p><?php echo $carrito_fila['descripcion'] ?></p>
+        <?php $totalG = $totalG + ($producto['precio'] * $producto['cantidad']) ?>
+      <?php } ?>
+      <div class="montos">
+        <hr />
+        <div class="cont_monto">
+          <div class="text">
+            <p>Subtotal</p>
+          </div>
+          <div class="precio">
+            <p>S/. <?php echo number_format($totalG, 2) ?></p>
+          </div>
         </div>
-        <div class="contprecio">
-          <p><?php echo "S/. " . $carrito_fila['total'] ?></p>
+        <div class="cont_monto">
+          <div class="text">
+            <p>Envíos</p>
+          </div>
+          <div class="precio">
+            <p>En proceso</p>
+          </div>
+        </div>
+        <hr />
+        <div class="cont_monto">
+          <div class="text">
+            <p>Total</p>
+          </div>
+          <div class="precio">
+            <p>S/. <?php echo number_format($totalG, 2) ?></p>
+          </div>
         </div>
       </div>
+    <?php } else { ?>
+      <p style="min-height: 40vh;">NO HAY PRODUCTOS EN EL CARRITO</p>
     <?php } ?>
-    <div class="montos">
-      <hr />
-      <div class="cont_monto">
-        <div class="text">
-          <p>Subtotal</p>
-        </div>
-        <div class="precio">
-          <p><?php echo "S/. " . $Subtotal ?></p>
-        </div>
-      </div>
-      <div class="cont_monto">
-        <div class="text">
-          <p>Envíos</p>
-        </div>
-        <div class="precio">
-          <p>En proceso</p>
-        </div>
-      </div>
-      <hr />
-      <div class="cont_monto">
-        <div class="text">
-          <p>Total</p>
-        </div>
-        <div class="precio">
-          <p><?php echo "S/. " . $Subtotal ?></p>
-        </div>
-      </div>
-    </div>
-  </div>
   </div>
   <script src="js/envio.js"></script>
 </body>

@@ -8,6 +8,8 @@ while ($producto_fila = mysqli_fetch_array($resultado_producto)) {
   $descripcion = $producto_fila['descripcion'];
   $precio = $producto_fila['precio'];
   $imagen = $producto_fila['imagen'];
+  $imagen2 = $producto_fila['imagen2'];
+  $imagen3 = $producto_fila['imagen3'];
 }
 
 
@@ -22,16 +24,16 @@ while ($producto_fila = mysqli_fetch_array($resultado_producto)) {
 <div class="contenedor">
   <div class="contenedor1">
     <div class="Izquierda">
-      <div class="imagen01"><img src="<?php echo $imagen ?>" /></div>
-      <div class="imagen02"><img src="imagenes/prueba01.webp" /></div>
-      <div class="imagen03"><img src="imagenes/prueba02.webp" /></div>
+      <div class="imagen01"><img src="<?php echo $imagen ?>" onclick="cambiarImagen(this)" /></div>
+      <div class="imagen02"><img src="<?php echo $imagen2 ?>" onclick="cambiarImagen(this)" /></div>
+      <div class="imagen03"><img src="<?php echo $imagen3 ?>" onclick="cambiarImagen(this)" /></div>
     </div>
     <div class="central">
-      <div class="producto"><img src="<?php echo $imagen ?>" /></div>
+      <div class="producto"><img src="<?php echo $imagen ?>" id="imagenProducto" /></div>
       <div class="circulos">
-        <img src="imagenes/circulo (1).png" />
-        <img src="imagenes/circulo.png" />
-        <img src="imagenes/circulo.png" />
+        <div class="dot" src="imagenes/circulo (1).png" onclick="cambiarImagenCirculo(this, 1)"></div>
+        <div class="dot" src="imagenes/circulo.png" onclick="cambiarImagenCirculo(this, 2)"></div>
+        <div class="dot" src="imagenes/circulo.png" onclick="cambiarImagenCirculo(this, 3)"></div>
       </div>
     </div>
     <div class="Derecha">
@@ -62,6 +64,7 @@ while ($producto_fila = mysqli_fetch_array($resultado_producto)) {
         </div>
       </div>
       <form action="form_procesar_vista.php" method="POST">
+        <input type="hidden" name="id" value="<?php echo $idp ?>">
         <input type="hidden" name="imagen" value="<?php echo $imagen ?>">
         <input type="hidden" name="descripcion" value="<?php echo $descripcion ?>">
         <input type="hidden" name="precio" value="<?php echo $precio ?>">
@@ -81,35 +84,5 @@ while ($producto_fila = mysqli_fetch_array($resultado_producto)) {
     </div>
   </div>
 </div>
-<!-----ANUNCIO ----->
-<dialog id="registro">
-  <div class="entorno">
-    <div class="salir">
-      <span id="closebtn">X</span>
-    </div>
-    <div class="titulo">
-      <h2>Inicia sesion</h2>
-      <div class="pregunta">
-        <a href="crea_cuenta.php">
-          <h6>¿No tienes una cuenta? Crea una aqui</h6>
-        </a>
-      </div>
-    </div>
-    <div class="formulario">
-      <div class="Correo">
-        <input name="correo" type="email" placeholder="*Correo Electrónico" />
-      </div>
-      <div class="Contraseña">
-        <input name="contraseña" type="password" placeholder="*Contraseña" />
-      </div>
-      <div class="boton">
-        <span id="sibtn">
-          <p>Aceptar</p>
-        </span>
-      </div>
-    </div>
-  </div>
-</dialog>
-
 <script src="js/vista.js"></script>
 <?php include 'pie.php'; ?>

@@ -1,4 +1,4 @@
-<?php
+<?php /*
 include './bd/conexion.php';
 session_start();
 function usuarioLogeado()
@@ -25,4 +25,5 @@ if (usuarioLogeado()) {
     }
 } else {
     header('location: ini_sesion.php');
-}
+}*/
+header('location: Informacion.php');

@@ -35,14 +35,22 @@
   border-radius: 20px;
 }
 .contenedor1 .central .circulos {
+  display: flex;
   width: 25%;
   transform: translateX(160%);
   justify-content: center;
 }
-.contenedor1 .central .circulos img {
-  width: 20%;
-  margin-top: 5%;
+.contenedor1 .central .circulos .dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  margin: 5px;
+  background-color: #fff;
   cursor: pointer;
+}
+.contenedor1 .central .circulos .dot.active {
+  background-color: #000;
 }
 .contenedor1 .Derecha {
   width: 40%;
@@ -118,107 +126,6 @@
   padding-left: 8px;
   padding-right: 8px;
   text-decoration: none;
-}
-/* Anuncio */
-dialog {
-  width: 250px;
-  height: 200;
-  background-color: white;
-  border: 10px solid #000000;
-  border-radius: 20px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: slideIn 0.5s ease;
-  position: fixed;
-  overflow: auto;
-}
-
-dialog.closing {
-  animation: slideOut 0.5s ease; /* Animación de desaparición */
-}
-
-dialog[open] {
-  display: block;
-}
-
-dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-dialog .entorno {
-  padding: 10px;
-}
-
-dialog .entorno .titulo {
-  margin-bottom: 10px;
-}
-
-.entorno .titulo h2 {
-  color: black;
-}
-
-.entorno .pregunta a {
-  text-decoration: none;
-}
-
-.entorno .pregunta a h6 {
-  color: orange;
-}
-
-dialog .entorno .pregunta {
-  margin-top: 10px;
-}
-
-dialog .entorno .formulario {
-  margin-top: 10px;
-}
-
-.formulario .correo input {
-  background-color: #d9d9d9;
-  border: 5px solid #d9d9d9;
-  border-radius: 20px;
-}
-.formulario .contraseña input {
-  background-color: #d9d9d9;
-  border: 5px solid #d9d9d9;
-  border-radius: 20px;
-}
-
-dialog .entorno .Correo,
-dialog .entorno .Contraseña {
-  margin-bottom: 10px;
-}
-
-dialog .entorno .boton {
-  margin-top: 10px;
-
-  text-align: center;
-}
-
-dialog .entorno .salir {
-  width: 100%;
-  text-align: right;
-}
-
-dialog .entorno .salir span {
-  padding: 5px 10px 7px;
-  cursor: pointer;
-  color: black;
-}
-
-dialog .entorno .salir span:hover {
-  background-color: gray;
-}
-
-.entorno #sibtn p {
-  margin: auto;
-  width: 30%;
-  color: black;
-  background-color: orange;
-  border: 5px solid orange;
-  border-radius: 20px;
-  cursor: pointer;
 }
 
 /*btn agregar carrito*/

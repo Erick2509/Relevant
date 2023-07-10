@@ -1,6 +1,5 @@
 <?php
-include './bd/conexion.php';
-$consulta = "TRUNCATE TABLE carrito";
-$resultado = mysqli_query($conexion, $consulta);
+session_start();
+unset($_SESSION['CARRITO']);
 
 header('location: catalogo.php');

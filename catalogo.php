@@ -40,12 +40,12 @@
   </div>
   <div class="ropa">
     <div class="obj">
-      <a href=""><img src="imagenes/img_adidas/buzo1.webp" alt="" /></a>
+      <a href="Vista.php?id=<?php echo $id = 2; ?>"><img src="imagenes/img_adidas/buzo1.webp" alt="" /></a>
     </div>
-    <a href="" class="conttxt">
+    <a href="Vista.php?id=<?php echo $id = 2; ?>" class="conttxt">
       <h3 class="nombre">Adidas - Buzo Negro para Hombres</h3>
       <div class="precio">
-        <h4>S/. 80.00 PEN</h4>
+        <h4>S/. 99.90 PEN</h4>
       </div>
     </a>
   </div>
