@@ -12,21 +12,6 @@ function usuarioLogeado()
   }
 }
 
-include './bd/conexion.php';
-$consultainfousuario = "SELECT * FROM usuario_informacion WHERE id_usuario=" . $_SESSION['id'];
-$resultadoconsulta = mysqli_query($conexion, $consultainfousuario);
-$existinfo = false;
-while ($fila = mysqli_fetch_array($resultadoconsulta)) {
-  $existinfo = true;
-  $pais = $fila['pais'];
-  $direccion = $fila['direccion'];
-  $referencia = $fila['referencia'];
-  $codigo_postal = $fila['codigo_postal'];
-  $ciudad = $fila['ciudad'];
-  $region = $fila['region'];
-  $telefono = $fila['telefono'];
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -86,14 +71,14 @@ while ($fila = mysqli_fetch_array($resultadoconsulta)) {
             <div class="Pais">
               <select name="Pais" <?php echo (usuarioLogeado()) ? 'disabled' : ''; ?>>
                 <option>Pais/Region</option>
-                <option value="Peru" <?php echo ($existinfo && $pais == 'Peru') ? 'selected' : ''; ?>>Peru</option>
-                <option value="Chile" <?php echo ($existinfo && $pais == 'Chile') ? 'selected' : ''; ?>>Chile</option>
-                <option value="Argentina" <?php echo ($existinfo && $pais == 'Argentina') ? 'selected' : ''; ?>>Argentina</option>
-                <option value="Venezuela" <?php echo ($existinfo && $pais == 'Venezuela') ? 'selected' : ''; ?>>Venezuela</option>
-                <option value="Uruguay" <?php echo ($existinfo && $pais == 'Uruguay') ? 'selected' : ''; ?>>Uruguay</option>
-                <option value="Paraguay" <?php echo ($existinfo && $pais == 'Paraguay') ? 'selected' : ''; ?>>Paraguay</option>
-                <option value="Colombia" <?php echo ($existinfo && $pais == 'Colombia') ? 'selected' : ''; ?>>Colombia</option>
-                <option value="Ecuador" <?php echo ($existinfo && $pais == 'Ecuador') ? 'selected' : ''; ?>>Ecuador</option>
+                <option value="Peru" <?php echo ($_SESSION['pais'] == 'Peru') ? 'selected' : ''; ?>>Peru</option>
+                <option value="Chile" <?php echo ($_SESSION['pais'] == 'Chile') ? 'selected' : ''; ?>>Chile</option>
+                <option value="Argentina" <?php echo ($_SESSION['pais'] == 'Argentina') ? 'selected' : ''; ?>>Argentina</option>
+                <option value="Venezuela" <?php echo ($_SESSION['pais'] == 'Venezuela') ? 'selected' : ''; ?>>Venezuela</option>
+                <option value="Uruguay" <?php echo ($_SESSION['pais'] == 'Uruguay') ? 'selected' : ''; ?>>Uruguay</option>
+                <option value="Paraguay" <?php echo ($_SESSION['pais'] == 'Paraguay') ? 'selected' : ''; ?>>Paraguay</option>
+                <option value="Colombia" <?php echo ($_SESSION['pais'] == 'Colombia') ? 'selected' : ''; ?>>Colombia</option>
+                <option value="Ecuador" <?php echo ($_SESSION['pais'] == 'Ecuador') ? 'selected' : ''; ?>>Ecuador</option>
               </select>
             </div>
             <div class="N_A">
@@ -108,36 +93,36 @@ while ($fila = mysqli_fetch_array($resultadoconsulta)) {
               <input type="number" name="identidad" placeholder="DNI,CE,RUC" inputmode="numeric" id="dni" value="<?php echo (usuarioLogeado()) ? $_SESSION['numdocu'] : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
             </div>
             <div class="Direccion">
-              <input type="text" name="direccion" placeholder="Direccion" id="direccion" value="<?php echo $existinfo ? $direccion : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
+              <input type="text" name="direccion" placeholder="Direccion" id="direccion" value="<?php echo $_SESSION['direccion']; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
             </div>
             <div class="Referencia">
-              <input type="text" name="referencia" placeholder="Referencia" id="referencia" value="<?php echo $existinfo ? $referencia : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
+              <input type="text" name="referencia" placeholder="Referencia" id="referencia" value="<?php echo $_SESSION['referencia']; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
             </div>
             <div class="C_C">
               <div class="Codigo">
-                <input type="number" name="codigo_postal" placeholder="Codigo postal" id="codigoPos" value="<?php echo $existinfo ? $codigo_postal : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
+                <input type="number" name="codigo_postal" placeholder="Codigo postal" id="codigoPos" value="<?php echo $_SESSION['codigo_postal']; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
               </div>
               <div class="Ciudad">
-                <input type="text" name="ciudad" placeholder="Ciudad" id="ciudad" value="<?php echo $existinfo ? $ciudad : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
+                <input type="text" name="ciudad" placeholder="Ciudad" id="ciudad" value="<?php echo $_SESSION['ciudad']; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
               </div>
             </div>
             <div class="Pais">
               <select name="Provincia" <?php echo (usuarioLogeado()) ? 'disabled' : ''; ?>>
                 <option>Region/Departamento </option>
-                <option value="Amazonas" <?php echo ($existinfo && $region == 'Amazonas') ? 'selected' : ''; ?>>Amazonas</option>
-                <option value="Ancash" <?php echo ($existinfo && $region == 'Ancash') ? 'selected' : ''; ?>>Ancash</option>
-                <option value="Apurimac" <?php echo ($existinfo && $region == 'Apurimac') ? 'selected' : ''; ?>>Apurimac</option>
-                <option value="Arequipa" <?php echo ($existinfo && $region == 'Arequipa') ? 'selected' : ''; ?>>Arequipa</option>
-                <option value="Ayacucho" <?php echo ($existinfo && $region == 'Ayacucho') ? 'selected' : ''; ?>>Ayacucho</option>
-                <option value="Cajamarca" <?php echo ($existinfo && $region == 'Cajamarca') ? 'selected' : ''; ?>>Cajamarca</option>
-                <option value="Callao" <?php echo ($existinfo && $region == 'Callao') ? 'selected' : ''; ?>>Callao</option>
-                <option value="Lima" <?php echo ($existinfo && $region == 'Lima') ? 'selected' : ''; ?>>Lima</option>
-                <option value="Madre de Dios" <?php echo ($existinfo && $region == 'Madre de Dios') ? 'selected' : ''; ?>>Madre de Dios</option>
+                <option value="Amazonas" <?php echo ($_SESSION['region'] == 'Amazonas') ? 'selected' : ''; ?>>Amazonas</option>
+                <option value="Ancash" <?php echo ($_SESSION['region'] == 'Ancash') ? 'selected' : ''; ?>>Ancash</option>
+                <option value="Apurimac" <?php echo ($_SESSION['region'] == 'Apurimac') ? 'selected' : ''; ?>>Apurimac</option>
+                <option value="Arequipa" <?php echo ($_SESSION['region'] == 'Arequipa') ? 'selected' : ''; ?>>Arequipa</option>
+                <option value="Ayacucho" <?php echo ($_SESSION['region'] == 'Ayacucho') ? 'selected' : ''; ?>>Ayacucho</option>
+                <option value="Cajamarca" <?php echo ($_SESSION['region'] == 'Cajamarca') ? 'selected' : ''; ?>>Cajamarca</option>
+                <option value="Callao" <?php echo ($_SESSION['region'] == 'Callao') ? 'selected' : ''; ?>>Callao</option>
+                <option value="Lima" <?php echo ($_SESSION['region'] == 'Lima') ? 'selected' : ''; ?>>Lima</option>
+                <option value="Madre de Dios" <?php echo ($_SESSION['region'] == 'Madre de Dios') ? 'selected' : ''; ?>>Madre de Dios</option>
               </select>
             </div>
 
             <div class="Telefono">
-              <input type="number" name="telefono" placeholder="Teléfono" id="telefono" value="<?php echo $existinfo ? $telefono : ''; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
+              <input type="number" name="telefono" placeholder="Teléfono" id="telefono" value="<?php echo $_SESSION['telefono']; ?>" <?php echo (usuarioLogeado()) ? 'readonly' : ''; ?> />
             </div>
             <div class="Enviar">
               <input type="checkbox" />Guardar mi información y consultar

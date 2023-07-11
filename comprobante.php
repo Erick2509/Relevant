@@ -1,17 +1,6 @@
 <?php
 session_start();
 include './bd/conexion.php';
-$consulta = "SELECT * FROM usuario_informacion WHERE id_usuario='" . $_SESSION['id'] . "'";
-$resultado = mysqli_query($conexion, $consulta);
-while ($fila = mysqli_fetch_array($resultado)) {
-  $pais = $fila['pais'];
-  $direccion = $fila['direccion'];
-  $referencia = $fila['referencia'];
-  $codigo_postal = $fila['codigo_postal'];
-  $ciudad = $fila['ciudad'];
-  $region = $fila['region'];
-  $telefono = $fila['telefono'];
-}
 
 $consultainfopago = "SELECT * FROM metodos_pagos WHERE tipo_pago= '" . $_SESSION['Mpago'] . "'";
 $resultadoinfopago = mysqli_query($conexion, $consultainfopago);
@@ -37,9 +26,6 @@ while ($filainfo = mysqli_fetch_array($resultadoinfopago)) {
       </div>
       <div class="confirmacion_pedido">
         <div class="check"><img src="imagenes/check.png" /></div>
-        <div class="cod_pedido">
-          <h3>Pedido REL123</h3>
-        </div>
         <div class="agradecimiento">
           <h1>Gracias <?php echo $_SESSION['nombre'] . "!" ?></h1>
         </div>
@@ -68,11 +54,11 @@ while ($filainfo = mysqli_fetch_array($resultadoinfopago)) {
               <h4>Dirección de envío</h4>
               <ul>
                 <li><?php echo $_SESSION['nombre'] ?></li>
-                <li><?php echo $telefono ?></li>
-                <li><?php echo $direccion ?></li>
-                <li><?php echo $codigo_postal ?></li>
-                <li><?php echo $region ?></li>
-                <li><?php echo $pais ?></li>
+                <li><?php echo $_SESSION['telefono'] ?></li>
+                <li><?php echo $_SESSION['direccion'] ?></li>
+                <li><?php echo $_SESSION['codigo_postal'] ?></li>
+                <li><?php echo $_SESSION['region'] ?></li>
+                <li><?php echo $_SESSION['pais'] ?></li>
               </ul>
             </div>
           </div>

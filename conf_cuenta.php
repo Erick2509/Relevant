@@ -62,10 +62,10 @@ while ($usuario_fila = mysqli_fetch_array($resultado_usuario)) {
         </div>
         <div class="dc_botones">
           <div class="btn1">
-            <a href="">Desactivar</a>
+            <a href="eliminar_usuario.php">Desactivar</a>
           </div>
           <div class="btn2">
-            <button type="submit"><a href="index.php">Guardar</a></button>
+            <button type="submit"><a href="#">Guardar</a></button>
           </div>
         </div>
       </form>

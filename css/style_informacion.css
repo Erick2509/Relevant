@@ -82,7 +82,7 @@
   border: 5px solid #d9d9d9;
   margin-top: 2.5%;
   width: 95%;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .Formulario .Contenido01 .Enviar {
   color: white;
@@ -101,7 +101,7 @@
 .Form .Pais select {
   background-color: #d9d9d9;
   border: 5px solid #d9d9d9;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-top: 2.5%;
   width: 98%;
 }
@@ -117,7 +117,7 @@
   background-color: #d9d9d9;
   width: 90%;
   border: 5px solid #d9d9d9;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .Form .N_A .Apellidos {
   width: 50%;
@@ -127,28 +127,28 @@
   background-color: #d9d9d9;
   width: 90%;
   border: 5px solid #d9d9d9;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .Form .Identidad input {
   margin-top: 2.5%;
   width: 95%;
   background-color: #d9d9d9;
   border: 5px solid #d9d9d9;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .Form .Direccion input {
   margin-top: 2.5%;
   width: 95%;
   background-color: #d9d9d9;
   border: 5px solid #d9d9d9;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .Form .Referencia input {
   margin-top: 2.5%;
   width: 95%;
   background-color: #d9d9d9;
   border: 5px solid #d9d9d9;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .Form .C_C {
   width: 100%;
@@ -162,7 +162,7 @@
   background-color: #d9d9d9;
   border: 5px solid #d9d9d9;
   width: 90%;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .Form .C_C .Ciudad {
   width: 50%;
@@ -172,13 +172,13 @@
   background-color: #d9d9d9;
   border: 5px solid #d9d9d9;
   width: 90%;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .Form .Telefono input {
   background-color: #d9d9d9;
   border: 5px solid #d9d9d9;
   width: 95%;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-top: 2.5%;
 }
 .Form .Enviar {

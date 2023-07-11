@@ -6,7 +6,9 @@ $resultado_producto = mysqli_query($conexion, $consulta_producto);
 
 while ($producto_fila = mysqli_fetch_array($resultado_producto)) {
   $descripcion = $producto_fila['descripcion'];
+  $codigo_producto = $producto_fila['codigo_producto'];
   $precio = $producto_fila['precio'];
+  $precio_lista = $producto_fila['precio_lista'];
   $imagen = $producto_fila['imagen'];
   $imagen2 = $producto_fila['imagen2'];
   $imagen3 = $producto_fila['imagen3'];
@@ -41,7 +43,7 @@ while ($producto_fila = mysqli_fetch_array($resultado_producto)) {
         <h2><?php echo $descripcion ?></h2>
       </div>
       <div class="Marca">
-        <h4>SANTOR SKU: 1000241861</h4>
+        <h4><?php echo $codigo_producto ?></h4>
       </div>
       <div class="P_T_C">
         <div class="Precio">
@@ -58,7 +60,7 @@ while ($producto_fila = mysqli_fetch_array($resultado_producto)) {
               <h3>Precio lista</h3>
             </div>
             <div class="Total2">
-              <h3>S/. 119.90</h3>
+              <h3>S/. <?php echo $precio_lista ?></h3>
             </div>
           </div>
         </div>

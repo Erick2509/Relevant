@@ -61,14 +61,3 @@ if (usuarioLogeado()) {
 } else {
     header('location: ini_sesion.php');
 }
-?>
-
-/*if (usuarioLogeado()) {
-
-$consulta = 'INSERT INTO carrito (descripcion, precio,cantidad,total,imagen,id_usuario)
-VALUES ("' . $descripcion . '", "' . $precio . '", "' . $cantidad . '","' . $total . '", "' . $imagen . '","' . $_SESSION['id'] . '")';
-mysqli_query($conexion, $consulta);
-
-} else {
-header('location: ini_sesion.php');
-}*/

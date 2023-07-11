@@ -1,5 +1,18 @@
 <?php include 'cabecera.php'; ?>
 
+<?php
+include './bd/conexion.php';
+$consulta = 'SELECT * FROM usuarios WHERE id_usuario=' . $_SESSION['id'];
+$respuesta = mysqli_query($conexion, $consulta);
+while ($fila = mysqli_fetch_array($respuesta)) {
+  $direccion = $fila['direccion'];
+  $referencia = $fila['referencia'];
+  $codigo_postal = $fila['codigo_postal'];
+  $ciudad = $fila['ciudad'];
+  $telefono = $fila['telefono'];
+}
+?>
+
 <title>RelevantDireccion</title>
 <link rel="stylesheet" href="css/style_confdireccion.css" />
 <!--CONTENIDO-->
@@ -31,17 +44,14 @@
         <div class="detalle">
           <h3>Detalles de dirección de entrega</h3>
           <div class="form_envio">
-            <input type="text" name="direccion" placeholder="*Dirección" /><br />
-            <input type="text" name="referencia" placeholder="*Referencia, puntos cercanos, etc" /><br />
-            <input type="number" name="codigo" placeholder="*Código postal o Distrito" /><br />
-            <input type="text" name="ciudad" placeholder="*Ciudad" /><br />
-            <input type="number" name="telefono" placeholder="*Teléfono" /><br />
+            <input type="text" name="direccion" placeholder="*Dirección" value="<?php echo $direccion ?>" /><br />
+            <input type="text" name="referencia" placeholder="*Referencia, puntos cercanos, etc" value="<?php echo $referencia ?>" /><br />
+            <input type="number" name="codigo" placeholder="*Código postal o Distrito" value="<?php echo $codigo_postal ?>" /><br />
+            <input type="text" name="ciudad" placeholder="*Ciudad" value="<?php echo $ciudad ?>" /><br />
+            <input type="number" name="telefono" placeholder="*Teléfono" value="<?php echo $telefono ?>" /><br />
           </div>
         </div>
         <div class="dc_botones">
-          <div class="btn1">
-            <a href="">Editar</a>
-          </div>
           <div class="btn2">
             <button type="submit"><a href="#">Guardar</a></button>
           </div>

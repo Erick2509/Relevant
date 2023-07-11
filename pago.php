@@ -20,20 +20,6 @@ while ($metodofila3 = mysqli_fetch_array($resultado_metodo3)) {
   $tipo_pago3 = $metodofila3['tipo_pago'];
   $descricion3 = $metodofila3['descripcion'];
 }
-
-$consultainfousuario = "SELECT * FROM usuario_informacion WHERE id_usuario=" . $_SESSION['id'];
-$resultadoconsulta = mysqli_query($conexion, $consultainfousuario);
-$existinfo = false;
-while ($fila = mysqli_fetch_array($resultadoconsulta)) {
-  $existinfo = true;
-  $pais = $fila['pais'];
-  $direccion = $fila['direccion'];
-  $referencia = $fila['referencia'];
-  $codigo_postal = $fila['codigo_postal'];
-  $ciudad = $fila['ciudad'];
-  $region = $fila['region'];
-  $telefono = $fila['telefono'];
-}
 ?>
 <html>
 
@@ -76,7 +62,7 @@ while ($fila = mysqli_fetch_array($resultadoconsulta)) {
           <!--Informacion de Enviar a-->
           <div class="informacion">
             <div class="texto">Enviar a</div>
-            <div class="correo"><?php echo $direccion . "," . $ciudad . "," . $codigo_postal . "," . $region . "," . $pais ?></div>
+            <div class="correo"><?php echo $_SESSION['direccion'] . "," . $_SESSION['ciudad'] . "," . $_SESSION['codigo_postal'] . "," . $_SESSION['region'] . "," . $_SESSION['pais'] ?></div>
             <div class="d_cambiar">
               <a href="Informacion.php">Cambiar</a>
             </div>

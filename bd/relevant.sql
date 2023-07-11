@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-07-2023 a las 07:09:34
+-- Tiempo de generación: 11-07-2023 a las 05:58:45
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -30,46 +30,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `comentarios` (
   `id_correo` int(11) NOT NULL,
   `correo` varchar(100) NOT NULL,
-  `opinion` varchar(200) NOT NULL
+  `opinion` varchar(200) NOT NULL,
+  `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `comentarios`
---
-
-INSERT INTO `comentarios` (`id_correo`, `correo`, `opinion`) VALUES
-(1, 'castilloerick760@gmail.com', 'Prueba de correo de opinion cargada a la base de datos'),
-(2, 'prueba2@gmail.com', 'prueba2');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `informacion`
---
-
-CREATE TABLE `informacion` (
-  `id_informacion` int(11) NOT NULL,
-  `correo` varchar(100) NOT NULL,
-  `pais` varchar(100) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `apellido` varchar(100) NOT NULL,
-  `numdocu` int(8) NOT NULL,
-  `direccion` varchar(100) NOT NULL,
-  `referencia` varchar(100) NOT NULL,
-  `codigo_postal` int(20) NOT NULL,
-  `ciudad` varchar(100) NOT NULL,
-  `region` varchar(100) NOT NULL,
-  `telefono` int(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `informacion`
---
-
-INSERT INTO `informacion` (`id_informacion`, `correo`, `pais`, `nombre`, `apellido`, `numdocu`, `direccion`, `referencia`, `codigo_postal`, `ciudad`, `region`, `telefono`) VALUES
-(2, 'castilloerick760@gmail.com', 'Peru', 'Erick', 'Castillo', 72784578, 'Jiron Junin 378', 'cercado de lima', 20457, 'lima', 'Lima', 978451236),
-(3, 'prueba@gmail.com', 'Peru', 'Prueba', 'Prueba', 74857987, 'direccion prueba', 'prueba', 12478, 'prueba', 'Lima', 124578451),
-(4, 'pruebasinlogin@gmail.com', 'Peru', 'pruebasin', 'pruebasin', 45784578, 'lima', 'lima', 2147483647, 'lima', 'Ancash', 21465464);
 
 -- --------------------------------------------------------
 
@@ -102,7 +65,9 @@ INSERT INTO `metodos_pagos` (`id_pago`, `tipo_pago`, `descripcion`, `instruccion
 CREATE TABLE `productos` (
   `id_producto` int(11) NOT NULL,
   `descripcion` varchar(100) NOT NULL,
+  `codigo_producto` varchar(250) NOT NULL,
   `precio` decimal(10,2) NOT NULL,
+  `precio_lista` decimal(10,2) NOT NULL,
   `imagen` varchar(100) NOT NULL,
   `imagen2` varchar(100) NOT NULL,
   `imagen3` varchar(100) NOT NULL
@@ -112,9 +77,9 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id_producto`, `descripcion`, `precio`, `imagen`, `imagen2`, `imagen3`) VALUES
-(1, 'Short deportivo de compresión para hombre', 89.90, 'imagenes/short.jpg', 'imagenes/prueba01.webp', 'imagenes/prueba02.webp'),
-(2, 'Adidas - Buzo Negro para Hombres', 99.90, 'imagenes/img_adidas/buzo1.webp', 'imagenes/img_adidas/buzo1-1.webp', 'imagenes/img_adidas/buzo1-2.webp');
+INSERT INTO `productos` (`id_producto`, `descripcion`, `codigo_producto`, `precio`, `precio_lista`, `imagen`, `imagen2`, `imagen3`) VALUES
+(1, 'Short deportivo de compresión para hombre', 'SANTOR SKU: 1000241861', 89.90, 110.90, 'imagenes/short.jpg', 'imagenes/prueba01.webp', 'imagenes/prueba02.webp'),
+(2, 'Adidas - Buzo Negro para Hombres', 'CASAD ADI: 20124578', 99.90, 119.90, 'imagenes/img_adidas/buzo1.webp', 'imagenes/img_adidas/buzo1-1.webp', 'imagenes/img_adidas/buzo1-2.webp');
 
 -- --------------------------------------------------------
 
@@ -153,27 +118,7 @@ CREATE TABLE `usuarios` (
   `apellido` varchar(100) NOT NULL,
   `numdocu` int(8) NOT NULL,
   `nacimiento` date NOT NULL,
-  `genero` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`id_usuario`, `correo`, `contraseña`, `nombre`, `apellido`, `numdocu`, `nacimiento`, `genero`) VALUES
-(1, 'prueba@gmail.com', '123456', 'Erick', 'Castillo', 74587845, '2001-12-20', 'Masculino'),
-(2, 'prueba2modificado@gmail.com', 'contraseñamodificada', 'ErickModificado', 'CastilloModificado', 12345678, '2023-07-04', 'Masculino'),
-(3, 'prueba2@gmail.com', '123456', 'prueba2', 'prueba2', 457841245, '2023-07-06', 'Masculino');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario_informacion`
---
-
-CREATE TABLE `usuario_informacion` (
-  `id_usuarioinfo` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
+  `genero` varchar(20) NOT NULL,
   `pais` varchar(100) NOT NULL,
   `direccion` varchar(100) NOT NULL,
   `referencia` varchar(100) NOT NULL,
@@ -184,12 +129,13 @@ CREATE TABLE `usuario_informacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `usuario_informacion`
+-- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuario_informacion` (`id_usuarioinfo`, `id_usuario`, `pais`, `direccion`, `referencia`, `codigo_postal`, `ciudad`, `region`, `telefono`) VALUES
-(1, 1, 'Peru', 'LIMAINFO', 'LIMAINFO', 123456, 'LIMAINFO', 'Lima', 978451247),
-(10, 1, '', 'LIMAINFO', 'LIMAINFO', 123456, 'LIMAINFO', '', 978451247);
+INSERT INTO `usuarios` (`id_usuario`, `correo`, `contraseña`, `nombre`, `apellido`, `numdocu`, `nacimiento`, `genero`, `pais`, `direccion`, `referencia`, `codigo_postal`, `ciudad`, `region`, `telefono`) VALUES
+(1, 'prueba@gmail.com', '123456', 'Prueba', 'Prueba', 78451235, '2023-07-19', 'Masculino', 'Peru', 'Lima', 'Jiron 1245', 20124, 'Lima', 'Lima', 978451245),
+(2, 'prueba2@gmail.com', '123456', 'Prueba2', 'Prueba2', 78451245, '2023-07-03', 'Masculino', 'Peru', 'Jiron 1234', 'cerca', 20145, 'Lima', 'Lima', 978451245),
+(3, 'prueba3@gmail.com', '123', 'Prueba3', 'prueba3', 7841245, '2023-07-28', 'Masculino', 'Peru', 'adad', 'cerca', 6151, 'asdasd', 'Apurimac', 87987987);
 
 -- --------------------------------------------------------
 
@@ -206,6 +152,7 @@ CREATE TABLE `ventas` (
   `metodoPago` varchar(100) NOT NULL,
   `Tenvio` varchar(100) NOT NULL,
   `Penvio` decimal(10,2) NOT NULL,
+  `fecha` datetime NOT NULL,
   `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -213,11 +160,9 @@ CREATE TABLE `ventas` (
 -- Volcado de datos para la tabla `ventas`
 --
 
-INSERT INTO `ventas` (`id_venta`, `descripcion`, `precio`, `cantidad`, `total`, `metodoPago`, `Tenvio`, `Penvio`, `id_usuario`) VALUES
-(1, 'Short deportivo de compresión para hombre', 89.90, 1, 89.90, 'Depósito Bancario', 'Envío express - 1 a 3 días hábiles', 59.90, 1),
-(2, 'Adidas - Buzo Negro para Hombres', 99.90, 3, 299.70, 'Depósito Bancario', 'Envío express - 1 a 3 días hábiles', 59.90, 1),
-(3, 'Adidas - Buzo Negro para Hombres', 99.90, 6, 599.40, 'Yape/Plin', 'Recojo en - Tienda 3', 9.90, 1),
-(4, 'Short deportivo de compresión para hombre', 89.90, 4, 359.60, 'Yape/Plin', 'Recojo en - Tienda 3', 9.90, 1);
+INSERT INTO `ventas` (`id_venta`, `descripcion`, `precio`, `cantidad`, `total`, `metodoPago`, `Tenvio`, `Penvio`, `fecha`, `id_usuario`) VALUES
+(1, 'Short deportivo de compresión para hombre', 89.90, 1, 89.90, 'Depósito Bancario', 'Envío express - 1 a 3 días hábiles', 59.90, '2023-07-10 22:47:54', 3),
+(2, 'Adidas - Buzo Negro para Hombres', 99.90, 1, 99.90, 'Depósito Bancario', 'Envío express - 1 a 3 días hábiles', 59.90, '2023-07-10 22:47:54', 3);
 
 --
 -- Índices para tablas volcadas
@@ -227,13 +172,8 @@ INSERT INTO `ventas` (`id_venta`, `descripcion`, `precio`, `cantidad`, `total`, 
 -- Indices de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  ADD PRIMARY KEY (`id_correo`);
-
---
--- Indices de la tabla `informacion`
---
-ALTER TABLE `informacion`
-  ADD PRIMARY KEY (`id_informacion`);
+  ADD PRIMARY KEY (`id_correo`),
+  ADD KEY `usuarios_id_usuario_comentarios` (`id_usuario`);
 
 --
 -- Indices de la tabla `metodos_pagos`
@@ -260,18 +200,11 @@ ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
--- Indices de la tabla `usuario_informacion`
---
-ALTER TABLE `usuario_informacion`
-  ADD PRIMARY KEY (`id_usuarioinfo`),
-  ADD KEY `usuarios_id_usuario_usuario_informacion` (`id_usuario`);
-
---
 -- Indices de la tabla `ventas`
 --
 ALTER TABLE `ventas`
   ADD PRIMARY KEY (`id_venta`),
-  ADD KEY `usuarios_id_usuario_prenda` (`id_usuario`);
+  ADD KEY `usuarios_id_usuario_ventas` (`id_usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -281,13 +214,7 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_correo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `informacion`
---
-ALTER TABLE `informacion`
-  MODIFY `id_informacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_correo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `metodos_pagos`
@@ -314,32 +241,26 @@ ALTER TABLE `usuarios`
   MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `usuario_informacion`
---
-ALTER TABLE `usuario_informacion`
-  MODIFY `id_usuarioinfo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `usuario_informacion`
+-- Filtros para la tabla `comentarios`
 --
-ALTER TABLE `usuario_informacion`
-  ADD CONSTRAINT `usuarios_id_usuario_usuario_informacion` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `usuarios_id_usuario_comentarios` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  ADD CONSTRAINT `usuarios_id_usuario_prenda` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `usuarios_id_usuario_ventas` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

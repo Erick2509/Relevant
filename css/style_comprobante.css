@@ -33,21 +33,21 @@
   width: 95%;
   padding: 2.5%;
   overflow: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .contenido_comprobante .confirmacion_pedido .check {
   width: 15%;
-  float: left;
 }
 .contenido_comprobante .confirmacion_pedido .cod_pedido {
   width: 83%;
-  float: right;
   padding-top: 1%;
   padding-left: 1%;
   padding-right: 1%;
 }
 .contenido_comprobante .confirmacion_pedido .agradecimiento {
   width: 83%;
-  float: right;
   padding: 1%;
 }
 .contenido_comprobante .confirmacion_pedido .check img {
