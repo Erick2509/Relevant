@@ -267,7 +267,7 @@
   text-align: end;
 }
 /*RESPONSIVE*/
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 950px) {
   .contenido_comprobante .product {
     display: none;
   }

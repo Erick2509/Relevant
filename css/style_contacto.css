@@ -42,6 +42,12 @@
   color: #000000;
   border: solid 4px #000000;
 }
+@media screen and (max-width: 600px) {
+  .c_contacto .contenido h3 {
+    font-size: 40px;
+    text-align: center;
+  }
+}
 @media screen and (max-width: 360px) {
   .c_contacto .contenido {
     width: 95%;
@@ -53,5 +59,8 @@
   }
   .c_contacto .boton {
     margin: 8% 0;
+  }
+  .c_contacto .contenido p {
+    font-size: 25px;
   }
 }

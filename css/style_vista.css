@@ -8,6 +8,8 @@
   overflow: auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  min-height: 80vh;
 }
 .contenedor .Izquierda {
   width: 20%;
@@ -37,7 +39,7 @@
 .contenedor1 .central .circulos {
   display: flex;
   width: 25%;
-  transform: translateX(160%);
+  margin: auto;
   justify-content: center;
 }
 .contenedor1 .central .circulos .dot {
@@ -157,10 +159,18 @@
   margin-top: 10%;
   width: 100%;
 }
-
+@media only screen and (max-width: 1080px) {
+  .contenedor1 .central .circulos {
+    width: 50%;
+  }
+  .contenedor1 .central .circulos .dot {
+    width: 20px;
+    height: 20px;
+  }
+}
 /*RESPONSIVE * abra imagenes como imagen01,imagne02,imagen03 seran oclutadas en el responsive de 360*/
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 700px) {
   html,
   body {
     overflow-x: hidden;

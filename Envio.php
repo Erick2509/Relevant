@@ -53,15 +53,13 @@ while ($filaenvio5 = mysqli_fetch_array($resultadoenvio5)) {
         <a href="#"><img src="imagenes/logo.png" alt="" /></a>
       </div>
       <nav class="migas_pan">
-        <ol>
-          <li class="migas"><a href="">Carrito</a></li>
-          <li class="signo">&#62;</li>
-          <li class="migas"><a href="">Información</a></li>
-          <li class="signo">&#62;</li>
-          <li class="migas_select">Envíos</li>
-          <li class="signo">&#62;</li>
-          <li class="migas"><a href="">Pago</a></li>
-        </ol>
+        <div class="migas"><a href="#">Carrito</a></div>
+        <div class="signo">&#62;</div>
+        <div class="migas"><a href="#">Información</a></div>
+        <div class="signo">&#62;</div>
+        <div class="migas_select">Envíos</div>
+        <div class="signo">&#62;</div>
+        <div class="migas"><a href="#">Pago</a></div>
       </nav>
       <!--Contenido de contacto, enviar y envios-->
 

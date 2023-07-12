@@ -30,15 +30,13 @@ function usuarioLogeado()
         <a href="#"><img src="imagenes/logo.png" alt="" /></a>
       </div>
       <nav class="migas_pan">
-        <ol>
-          <li class="migas"><a href="">Carrito</a></li>
-          <li class="signo">&#62;</li>
-          <li class="migas_select">Información</li>
-          <li class="signo">&#62;</li>
-          <li class="migas"><a href="">Envíos</a></li>
-          <li class="signo">&#62;</li>
-          <li class="migas"><a href="">Pago</a></li>
-        </ol>
+        <div class="migas"><a href="#">Carrito</a></div>
+        <div class="signo">&#62;</div>
+        <div class="migas_select">Información</div>
+        <div class="signo">&#62;</div>
+        <div class="migas"><a href="#">Envíos</a></div>
+        <div class="signo">&#62;</div>
+        <div class="migas"><a href="#">Pago</a></div>
       </nav>
       <div class="Formulario">
         <form action="form_informacion.php" method="POST">

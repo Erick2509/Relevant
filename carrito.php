@@ -56,6 +56,7 @@ function usuarioLogeado()
               <span><?php echo number_format($producto['precio'] * $producto['cantidad'], 2) ?></span>
             </div>
           </div>
+
           <?php $totalG = $totalG + ($producto['precio'] * $producto['cantidad']) ?>
         <?php } ?>
         <!--SUBTOTAL-->
@@ -74,7 +75,7 @@ function usuarioLogeado()
           <a href="form_procesar_carrito.php">FINALIZAR PEDIDO</a>
         </div>
       <?php } else { ?>
-        <p style="min-height: 40vh; text-align: center; color: #FF0000;">NO HAY PRODUCTOS EN EL CARRITO</p>
+        <p style="text-align: center; color: #FF0000;">NO HAY PRODUCTOS EN EL CARRITO</p>
       <?php } ?>
     </div>
   </div>

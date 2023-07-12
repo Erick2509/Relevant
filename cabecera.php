@@ -63,14 +63,41 @@
         <a href="contacto.php">Contacto</a>
         <br />
         <hr />
-        <a href="ini_sesion.php">Cuenta</a>
+        <?php if (isset($_SESSION['nombre']) && isset($_SESSION['apellido'])) : ?>
+          <a href="conf_cuenta.php">Cuenta</a>
+        <?php else : ?>
+          <a href="ini_sesion.php">Cuenta</a>
+        <?php endif; ?>
       </div>
     </div>
     <div class="logo">
       <img src="imagenes/logo.png" alt="" />
     </div>
     <div class="menu_logo">
-      <a href=""><img src="imagenes/logo_usuario.png" alt="" /></a>
-      <a href="carrito.php"><img src="imagenes/bolsa.png" alt="" /></a>
+      <div class="btnusuario">
+        <?php if (isset($_SESSION['nombre']) && isset($_SESSION['apellido'])) : ?>
+          <a href="conf_cuenta.php"><img src="imagenes/logo_usuario.png" alt="" /></a>
+          <span class="nombre_usuario">
+            <?php
+            if (isset($_SESSION['nombre']) && isset($_SESSION['apellido'])) {
+              echo $_SESSION['nombre'];
+            } else {
+              echo "";
+            }
+            ?>
+          </span>
+        <?php else : ?>
+          <a href="ini_sesion.php"><img src="imagenes/logo_usuario.png" alt="" /></a>
+        <?php endif; ?>
+      </div>
+      <div class="carrito2">
+        <a href="carrito.php"><img src="imagenes/bolsa.png" alt="" /></a>
+        <?php if (isset($_SESSION['nombre']) && isset($_SESSION['apellido'])) : ?>
+          <span class="cantidadCarrito"><?php
+                                        echo (empty($_SESSION['CARRITO']) ? 0 : count($_SESSION['CARRITO']));
+                                        ?></span>
+        <?php else : ?>
+        <?php endif; ?>
+      </div>
     </div>
   </div>

@@ -37,15 +37,13 @@ while ($metodofila3 = mysqli_fetch_array($resultado_metodo3)) {
         <a href="#"><img src="imagenes/logo.png" alt="" /></a>
       </div>
       <nav class="migas_pan">
-        <ol>
-          <li class="migas"><a href="">Carrito</a></li>
-          <li class="signo">&#62;</li>
-          <li class="migas"><a href="">Información</a></li>
-          <li class="signo">&#62;</li>
-          <li class="migas"><a href="">Envíos</a></li>
-          <li class="signo">&#62;</li>
-          <li class="migas_select">Pago</li>
-        </ol>
+        <div class="migas"><a href="#">Carrito</a></div>
+        <div class="signo">&#62;</div>
+        <div class="migas"><a href="#">Información</a></div>
+        <div class="signo">&#62;</div>
+        <div class="migas"><a href="#">Envíos</a></div>
+        <div class="signo">&#62;</div>
+        <div class="migas_select">Pago</div>
       </nav>
       <!--Contenido de contacto, enviar y envios-->
       <div class="contenido_general">

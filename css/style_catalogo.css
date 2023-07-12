@@ -106,6 +106,54 @@
 }
 
 /*RESPONSIVE*/
+@media screen and (max-width: 800px) {
+  /*Lista Marca*/
+  .lista_marca .marcas {
+    width: 100%;
+    margin: auto;
+  }
+  /*ESTILO PRODUCTOS*/
+  .catalogo {
+    margin: auto;
+  }
+  .catalogo .ropa {
+    width: 22%;
+    padding: 3.6%;
+    margin: 2%;
+  }
+  .catalogo .ropa .conttxt {
+    height: 70px;
+  }
+  .catalogo .ropa .conttxt h3,
+  h4 {
+    font-size: 15px;
+  }
+  .catalogo .ropa:hover {
+    transform: none;
+  }
+}
+/*RESPONSIVE*/
+@media screen and (max-width: 480px) {
+  /*Lista Marca*/
+  .lista_marca .marcas {
+    width: 100%;
+    margin: auto;
+  }
+  .lista_marca .marcas li img {
+    width: 100px;
+    height: 70px;
+  }
+  /*ESTILO PRODUCTOS*/
+  .catalogo {
+    margin: auto;
+  }
+  .catalogo .ropa {
+    width: 38.5%;
+    padding: 3.6%;
+    margin: 2%;
+  }
+}
+/*RESPONSIVE*/
 @media screen and (max-width: 360px) {
   /*Estilo submenu*/
   .lista_marca .marcas {

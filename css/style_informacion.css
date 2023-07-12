@@ -29,20 +29,14 @@
   width: 50%;
 }
 .Vista .migas_pan {
-  width: 40%;
-  overflow: auto;
-  padding: 0 30%;
-}
-.Vista .migas_pan ol {
-  width: 100%;
-}
-
-.Vista .migas_pan ol li {
-  list-style: none;
-  float: left;
+  width: 70%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin: auto;
 }
 
-.Vista .migas_pan ol li a {
+.Vista .migas a {
   color: #ff5c00;
   text-decoration: none;
 }
@@ -297,16 +291,12 @@
 .Vista .product .montos .cont_monto .precio p {
   text-align: end;
 }
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 950px) {
   .Vista .product {
     display: none;
   }
   .Vista .Izquierda {
     width: 100%;
     padding: 0;
-  }
-  .Vista .Izquierda .migas_pan {
-    width: 80%;
-    padding: 0 10%;
   }
 }

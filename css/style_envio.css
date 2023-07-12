@@ -36,22 +36,13 @@
 
 /*migas*/
 .contenido_pago .migas_pan {
-  width: 40%;
-  overflow: auto;
-  padding-left: 31%;
-  padding-right: 31%;
+  width: 70%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin: auto;
 }
-
-.contenido_pago .migas_pan ol {
-  width: 100%;
-}
-
-.contenido_pago .migas_pan ol li {
-  list-style: none;
-  float: left;
-}
-
-.contenido_pago .migas_pan ol li a {
+.contenido_pago .migas a {
   color: #ff5c00;
   text-decoration: none;
 }
@@ -113,6 +104,7 @@
 .contenido_general .pagogeneral {
   width: 95%;
   padding: 2.5%;
+  height: 70vh;
 }
 /*titulo*/
 .contenido_general .pagogeneral .titulo {
@@ -252,22 +244,12 @@
 }
 
 /*RESPONSIVE*/
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 950px) {
   .contenido_pago .product {
     display: none;
   }
   .contenido_pago .form {
     width: 100%;
     padding: 0;
-  }
-  .contenido_pago .form .migas_pan {
-    width: 80%;
-    padding: 0 10%;
-  }
-  .contenido_pago .form .botones .btnenvios {
-    margin: 5% 0;
-  }
-  .contenido_pago .form .botones .btn_cpago {
-    margin: 15% 0;
   }
 }

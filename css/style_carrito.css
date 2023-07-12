@@ -1,5 +1,6 @@
 .carrito {
   width: 100%;
+  min-height: 100vh;
 }
 .carrito .c_carrito {
   width: 75%;
@@ -121,7 +122,16 @@
 }
 
 /*RESPONSIVE*/
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 720px) {
+  .carrito .c_carrito {
+    width: 90%;
+    padding: 0;
+    margin: auto;
+  }
+}
+
+/*RESPONSIVE*/
+@media screen and (max-width: 600px) {
   .carrito .c_carrito {
     width: 95%;
     padding: 2.5%;
@@ -136,10 +146,18 @@
   .descrip {
     width: 50%;
   }
+  .carrito .c_carrito .producto_general .cont_producto .descrip p {
+    font-size: 20px;
+    font-weight: bold;
+  }
   .carrito .c_carrito .producto_general .cont_producto .cantidad,
   .total {
     width: 100%;
     float: left;
+  }
+  .carrito .c_carrito .producto_general .cont_producto .cantidad span {
+    font-size: 20px;
+    font-weight: bold;
   }
   .carrito .c_carrito .producto_general .cont_producto .total span {
     font-size: 25px;
