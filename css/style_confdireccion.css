@@ -4,7 +4,8 @@
 .contenedor .contenedor2 {
   width: 95%;
   padding: 2.5%;
-  overflow: auto;
+  overflow: hidden;
+  min-height: 80vh;
 }
 .contenedor .tg_confi {
   width: 80%;
@@ -123,7 +124,7 @@
   color: #ffffff;
 }
 /*RESPONSIVE*/
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 900px) {
   .contenedor .contenedor2 {
     width: 95%;
     padding: 2.5%;
@@ -141,10 +142,10 @@
     float: left;
   }
   .contenedor .t_confi .dt_confi ul li a {
-    font-size: 15px;
+    font-size: 20px;
   }
   .contenedor .t_confi .dt_confi .select {
-    font-size: 15px;
+    font-size: 20px;
   }
   .contenedor .c_detallescuenta {
     width: 100%;
@@ -160,5 +161,10 @@
   }
   .c_detallescuenta .dc_botones .btn2 button {
     padding: 10px 80px;
+  }
+}
+@media screen and (max-width: 920px) {
+  .btnCerrarSesion {
+    display: none;
   }
 }

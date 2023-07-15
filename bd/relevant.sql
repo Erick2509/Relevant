@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-07-2023 a las 05:58:45
+-- Tiempo de generación: 15-07-2023 a las 09:56:32
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -30,9 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `comentarios` (
   `id_correo` int(11) NOT NULL,
   `correo` varchar(100) NOT NULL,
-  `opinion` varchar(200) NOT NULL,
-  `id_usuario` int(11) NOT NULL
+  `opinion` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `comentarios`
+--
+
+INSERT INTO `comentarios` (`id_correo`, `correo`, `opinion`) VALUES
+(1, 'prueba@gmail.com', 'Correo de prueba'),
+(2, 'correo@gmail.com', 'correo de prueba');
 
 -- --------------------------------------------------------
 
@@ -135,7 +142,7 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`, `correo`, `contraseña`, `nombre`, `apellido`, `numdocu`, `nacimiento`, `genero`, `pais`, `direccion`, `referencia`, `codigo_postal`, `ciudad`, `region`, `telefono`) VALUES
 (1, 'prueba@gmail.com', '123456', 'Prueba', 'Prueba', 78451235, '2023-07-19', 'Masculino', 'Peru', 'Lima', 'Jiron 1245', 20124, 'Lima', 'Lima', 978451245),
 (2, 'prueba2@gmail.com', '123456', 'Prueba2', 'Prueba2', 78451245, '2023-07-03', 'Masculino', 'Peru', 'Jiron 1234', 'cerca', 20145, 'Lima', 'Lima', 978451245),
-(3, 'prueba3@gmail.com', '123', 'Prueba3', 'prueba3', 7841245, '2023-07-28', 'Masculino', 'Peru', 'adad', 'cerca', 6151, 'asdasd', 'Apurimac', 87987987);
+(4, 'prueba3@gmail.com', '1234', 'Prueba3', 'prueba3', 784512358, '2023-07-12', 'Masculino', 'Peru', 'jiron', 'Lima', 20154, 'Lima', 'Lima', 999999999);
 
 -- --------------------------------------------------------
 
@@ -161,8 +168,10 @@ CREATE TABLE `ventas` (
 --
 
 INSERT INTO `ventas` (`id_venta`, `descripcion`, `precio`, `cantidad`, `total`, `metodoPago`, `Tenvio`, `Penvio`, `fecha`, `id_usuario`) VALUES
-(1, 'Short deportivo de compresión para hombre', 89.90, 1, 89.90, 'Depósito Bancario', 'Envío express - 1 a 3 días hábiles', 59.90, '2023-07-10 22:47:54', 3),
-(2, 'Adidas - Buzo Negro para Hombres', 99.90, 1, 99.90, 'Depósito Bancario', 'Envío express - 1 a 3 días hábiles', 59.90, '2023-07-10 22:47:54', 3);
+(3, 'Short deportivo de compresión para hombre', 89.90, 1, 89.90, 'Depósito Bancario', 'Envío express - 1 a 3 días hábiles', 59.90, '2023-07-11 15:54:50', 1),
+(4, 'Short deportivo de compresión para hombre', 89.90, 8, 719.20, 'Paypal', 'Recojo en - Tienda 3', 9.90, '2023-07-13 23:18:57', 1),
+(5, 'Adidas - Buzo Negro para Hombres', 99.90, 6, 599.40, 'Paypal', 'Recojo en - Tienda 3', 9.90, '2023-07-13 23:18:57', 1),
+(6, 'Adidas - Buzo Negro para Hombres', 99.90, 1, 99.90, 'Depósito Bancario', 'Envío express - 1 a 3 días hábiles', 59.90, '2023-07-15 02:39:18', 1);
 
 --
 -- Índices para tablas volcadas
@@ -172,8 +181,7 @@ INSERT INTO `ventas` (`id_venta`, `descripcion`, `precio`, `cantidad`, `total`, 
 -- Indices de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  ADD PRIMARY KEY (`id_correo`),
-  ADD KEY `usuarios_id_usuario_comentarios` (`id_usuario`);
+  ADD PRIMARY KEY (`id_correo`);
 
 --
 -- Indices de la tabla `metodos_pagos`
@@ -214,7 +222,7 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_correo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_correo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `metodos_pagos`
@@ -238,29 +246,23 @@ ALTER TABLE `tipo_envio`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `comentarios`
---
-ALTER TABLE `comentarios`
-  ADD CONSTRAINT `usuarios_id_usuario_comentarios` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Filtros para la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  ADD CONSTRAINT `usuarios_id_usuario_ventas` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `usuarios_id_usuario_ventas` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

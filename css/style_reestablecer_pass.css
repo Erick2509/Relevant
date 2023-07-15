@@ -1,0 +1,45 @@
+.contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+.recuperar {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+}
+.recuperar p {
+  margin: 15px 0;
+}
+.recuperar p input[type="password"] {
+  width: 50%;
+  margin: auto;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+.contenedor .recuperar input[type="submit"] {
+  margin: 15px 0;
+  color: #ffffff;
+  background-color: #000000;
+  padding: 10px 50px;
+  font-size: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.contenedor .recuperar h2 {
+  font-size: 40px;
+  margin: 30px 0;
+}
+
+@media screen and (max-width: 920px) {
+  .recuperar p input[type="password"] {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 630px) {
+  .recuperar {
+    width: 95%;
+  }
+}

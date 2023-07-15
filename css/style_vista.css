@@ -109,16 +109,16 @@
   width: 100%;
 }
 .Derecha .C_A .Cantidades .btncantidad {
-  width: 50%;
-  padding: 5% 25%;
+  width: 45%;
+  margin: 25px auto;
   text-align: center;
+  border: solid 1px rgb(0, 0, 0, 0.5);
 }
 .Derecha .C_A .Cantidades .btncantidad input {
-  width: 50%;
-  margin-top: 5%;
+  width: 65%;
   background-color: #d9d9d9;
   border: 5px solid #d9d9d9;
-  border-radius: 20px;
+  border-radius: 10px;
   text-align: center;
 }
 .Derecha .C_A .Cantidades .btncantidad a {
@@ -240,17 +240,25 @@
   }
 
   .Derecha .C_A .Cantidades .btncantidad {
-    width: 100%;
-    padding: 5% 0;
+    width: 60%;
     text-align: center;
   }
 
   .Derecha .C_A .Cantidades .btncantidad input {
     width: 70%;
-    margin-top: 5%;
   }
   .Derecha .Agregar {
     padding-bottom: 10%;
     margin: auto;
+  }
+}
+@media only screen and (max-width: 1095px) {
+  .Derecha .C_A .Cantidades .btncantidad {
+    width: 80%;
+    text-align: center;
+  }
+
+  .Derecha .C_A .Cantidades .btncantidad input {
+    width: 70%;
   }
 }

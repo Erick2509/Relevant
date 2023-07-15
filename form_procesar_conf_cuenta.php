@@ -11,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $nacimiento = $_POST['nacimiento'];
 }
 $consulta = 'UPDATE usuarios SET nombre="' . $nombre . '", apellido="' . $apellidos . '", numdocu="' . $documento . '", contraseña="' . $contrasena . '", correo="' . $correo . '", nacimiento="' . $nacimiento . '" WHERE id_usuario="' . $_SESSION['id'] . '"';
-
 mysqli_query($conexion, $consulta);
 
 header("Location: index.php");

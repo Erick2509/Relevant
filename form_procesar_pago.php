@@ -7,15 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 $_SESSION['Mpago'] = $metodoPago;
 
-//NUMERO PEDIDO
-if (isset($_SESSION['CARRITO']) && count($_SESSION['CARRITO']) > 0) {
-  // Obtener el número de boleta actual
-  $numeroBoleta = isset($_SESSION['numeroBoleta']) ? $_SESSION['numeroBoleta'] : 0;
-
-  // Incrementar el número de boleta para la próxima boleta
-  $numeroBoleta++;
-  $_SESSION['numeroBoleta'] = $numeroBoleta;
-}
 
 
 foreach ($_SESSION['CARRITO'] as $indice => $producto) {

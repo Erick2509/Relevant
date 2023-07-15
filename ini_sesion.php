@@ -18,7 +18,7 @@
     </p>
 
     <div class="ini_crear">
-      <h3><a href="recuperar_contraseña.php">¿Olvido su contraseña?</a></h3>
+      <h3><a href="recuperar_contrasena.php">¿Olvido su contraseña?</a></h3>
       <div class="iniciar_sesion">
         <a href="index.php"><input type="submit" value="Iniciar Sesion" onclick="return EnviarFormulario()" /></a>
       </div>

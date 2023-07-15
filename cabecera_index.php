@@ -68,6 +68,7 @@
         <hr />
         <?php if (isset($_SESSION['nombre']) && isset($_SESSION['apellido'])) : ?>
           <a href="conf_cuenta.php">Cuenta</a>
+          <a href="controlador_cerrar_sesion.php">Cerrar Sesion</a>
         <?php else : ?>
           <a href="ini_sesion.php">Cuenta</a>
         <?php endif; ?>

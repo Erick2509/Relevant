@@ -1,6 +1,13 @@
+.contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
 .recuperar {
-  width: 80%;
+  width: 70%;
   padding: 9% 10%;
+  min-height: 50vh;
 }
 
 .recuperar .texto {
@@ -12,8 +19,8 @@
 }
 
 .recuperar form {
-  width: 35%;
-  padding: 2% 32.5%;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .recuperar form p {
@@ -45,11 +52,7 @@
 }
 
 /* RESPONSIVE */
-@media only screen and (max-width: 360px) {
-  body {
-    overflow-x: hidden;
-  }
-
+@media only screen and (max-width: 1240px) {
   /* Resto de estilos */
   .recuperar {
     width: 100%;
@@ -70,8 +73,9 @@
   }
 
   .recuperar form {
-    width: 100%;
-    padding: 10px;
+    width: 50%;
+    padding: 10px 0;
+    margin: 0 auto;
     box-sizing: border-box;
   }
 
@@ -88,5 +92,11 @@
     display: block;
     margin-top: 10px;
     margin-bottom: 10px;
+  }
+}
+@media only screen and (max-width: 850px) {
+  .recuperar form {
+    width: 90%;
+    margin: 0 auto;
   }
 }
