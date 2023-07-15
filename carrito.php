@@ -72,7 +72,7 @@ function usuarioLogeado()
         </div>
         <hr />
         <div class="btn">
-          <a href="form_procesar_carrito.php">FINALIZAR PEDIDO</a>
+          <a href="Informacion.php">FINALIZAR PEDIDO</a>
         </div>
       <?php } else { ?>
         <p style="text-align: center; color: #FF0000;">NO HAY PRODUCTOS EN EL CARRITO</p>

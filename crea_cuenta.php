@@ -34,7 +34,7 @@
         </select>
       </p>
       <p>
-        <input name="documento" type="number" placeholder="*Número de Documento" />
+        <input name="documento" type="number" placeholder="*Número de Documento" oninput="javascript: if (this.value.length > 8) this.value = this.value.slice(0, 8);" />
       </p>
       <p>
         <label>Fecha de nacimiento</label>
@@ -79,7 +79,7 @@
         </div>
         <div class="C_C">
           <div class="Codigo">
-            <input type="number" name="codigo_postal" placeholder="Codigo postal" id="codigoPos" />
+            <input type="number" name="codigo_postal" placeholder="Codigo postal" id="codigoPos" oninput="javascript: if (this.value.length > 5) this.value = this.value.slice(0, 5);" />
           </div>
           <div class="Ciudad">
             <input type="text" name="ciudad" placeholder="Ciudad" id="ciudad" />
@@ -101,7 +101,7 @@
         </div>
 
         <div class="Telefono">
-          <input type="number" name="telefono" placeholder="Teléfono" id="telefono" />
+          <input type="number" name="telefono" placeholder="Teléfono" id="telefono" oninput="javascript: if (this.value.length > 9) this.value = this.value.slice(0, 9);" />
         </div>
       </div>
     </div>
